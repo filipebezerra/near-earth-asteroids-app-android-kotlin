@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NearEarthAsteroids"
         >
-        <activity android:name=".MainActivity">
+        <activity android:name=".NeaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

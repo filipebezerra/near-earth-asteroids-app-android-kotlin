@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Near Earth Asteroids</string>
+    <string name="asteroid_image_content_description">Estimated asteroid size</string>
+    <string name="share_button_content_description">Share asteroid</string>
+    <string name="more_info_button_content_description">See more info about the asteroid</string>
+    <string name="asteroid_name">Asteroid %s</string>
 </resources>
