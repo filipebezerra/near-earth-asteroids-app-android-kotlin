@@ -1,7 +1,27 @@
 <resources>
+    <!-- Global -->
     <string name="app_name">Near Earth Asteroids</string>
+
+    <!-- Asteroid List screen -->
     <string name="asteroid_image_content_description">Estimated asteroid size</string>
     <string name="share_button_content_description">Share asteroid</string>
     <string name="more_info_button_content_description">See more info about the asteroid</string>
-    <string name="asteroid_name">Asteroid %s</string>
+
+    <!-- Asteroid Detail screen -->
+    <string name="asteroid_detail_image_content_description" translation_description="Content description for the header / hero image that is show at the top of the asteroid detail screen.">
+        Image of asteroid being hazardous or safe
+    </string>
+    <string name="close_approach_date">Close approach date:</string>
+    <string name="absolute_magnitude_label">Absolute magnitude (H):</string>
+    <string name="relative_velocity_label">Relative velocity (km/s):</string>
+    <string name="estimated_diameter_label">Estimated diameter (m):</string>
+    <string name="distance_from_earth_label">Distance from Earth (km):</string>
+    <string name="orbit_class_description_label">Orbit class</string>
+
+    <!-- Common -->
+    <string name="asteroid_name_format">Asteroid %s</string>
+    <string name="absolute_magnitude_format">%.1f</string>
+    <string name="estimated_diameter_format">%.3f - %.3f</string>
+    <string name="relative_velocity_format">%.3f</string>
+    <string name="distance_from_earth_format">%.3f</string>
 </resources>

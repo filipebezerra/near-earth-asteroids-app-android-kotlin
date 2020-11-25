@@ -1,7 +1,10 @@
 package dev.filipebezerra.android.nearearthasteroids.data.entity
 
 data class EstimatedDiameter(
-    val kilometers: EstimatedDiameterInKilometers
+    val meters: EstimatedDiameterInMeters
 )
 
-data class EstimatedDiameterInKilometers(val maximum: Double)
+data class EstimatedDiameterInMeters(
+    val minimum: Double,
+    val maximum: Double,
+)

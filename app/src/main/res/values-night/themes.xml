@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.NearEarthAsteroids" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Base.Theme.NearEarthAsteroids" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_300</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,6 +13,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
         <!-- Customize your theme here. -->
+        <item name="colorOnSurface">@color/black_87pc</item>
         <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
     </style>
 </resources>

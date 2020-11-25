@@ -23,18 +23,21 @@ class AsteroidListViewModel : ViewModel() {
                 nasaJplUrl = "http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=2007753",
                 absoluteMagnitude = 18.6F,
                 estimatedDiameter = EstimatedDiameter(
-                    EstimatedDiameterInKilometers(
+                    EstimatedDiameterInMeters(
+                        minimum = 0.3195618867,
                         maximum = 1.1325046106,
                     ),
                 ),
                 isPotentiallyHazardousAsteroid = true,
                 closeApproachData = listOf(
                     CloseApproachData(
+                        approachDate = "2020-11-25",
+                        approachDateFull = "2020-Nov-25 03:24",
                         relativeVelocity = RelativeVelocity(
                             kilometersPerSecond = 11.5154455613,
                         ),
                         missDistance = MissDistance(
-                            astronomical = 0.066192904,
+                            kilometers = 0.066192904,
                         ),
                     ),
                 ),
@@ -51,18 +54,21 @@ class AsteroidListViewModel : ViewModel() {
                 nasaJplUrl = "http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=2007753",
                 absoluteMagnitude = 18.6F,
                 estimatedDiameter = EstimatedDiameter(
-                    EstimatedDiameterInKilometers(
+                    EstimatedDiameterInMeters(
+                        minimum = 0.3195618867,
                         maximum = 1.1325046106,
                     ),
                 ),
                 isPotentiallyHazardousAsteroid = true,
                 closeApproachData = listOf(
                     CloseApproachData(
+                        approachDate = "2020-11-25",
+                        approachDateFull = "2020-Nov-25 03:24",
                         relativeVelocity = RelativeVelocity(
                             kilometersPerSecond = 11.5154455613,
                         ),
                         missDistance = MissDistance(
-                            astronomical = 0.066192904,
+                            kilometers = 0.066192904,
                         ),
                     ),
                 ),
@@ -79,18 +85,21 @@ class AsteroidListViewModel : ViewModel() {
                 nasaJplUrl = "http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=2007753",
                 absoluteMagnitude = 18.6F,
                 estimatedDiameter = EstimatedDiameter(
-                    EstimatedDiameterInKilometers(
+                    EstimatedDiameterInMeters(
+                        minimum = 0.3195618867,
                         maximum = 1.1325046106,
                     ),
                 ),
                 isPotentiallyHazardousAsteroid = true,
                 closeApproachData = listOf(
                     CloseApproachData(
+                        approachDate = "2020-11-25",
+                        approachDateFull = "2020-Nov-25 03:24",
                         relativeVelocity = RelativeVelocity(
                             kilometersPerSecond = 11.5154455613,
                         ),
                         missDistance = MissDistance(
-                            astronomical = 0.066192904,
+                            kilometers = 0.066192904,
                         ),
                     ),
                 ),
@@ -107,18 +116,21 @@ class AsteroidListViewModel : ViewModel() {
                 nasaJplUrl = "http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=2007753",
                 absoluteMagnitude = 18.6F,
                 estimatedDiameter = EstimatedDiameter(
-                    EstimatedDiameterInKilometers(
+                    EstimatedDiameterInMeters(
+                        minimum = 0.3195618867,
                         maximum = 1.1325046106,
                     ),
                 ),
                 isPotentiallyHazardousAsteroid = true,
                 closeApproachData = listOf(
                     CloseApproachData(
+                        approachDate = "2020-11-25",
+                        approachDateFull = "2020-Nov-25 03:24",
                         relativeVelocity = RelativeVelocity(
                             kilometersPerSecond = 11.5154455613,
                         ),
                         missDistance = MissDistance(
-                            astronomical = 0.066192904,
+                            kilometers = 0.066192904,
                         ),
                     ),
                 ),

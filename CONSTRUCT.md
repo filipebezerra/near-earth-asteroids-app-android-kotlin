@@ -38,7 +38,7 @@
 - Image: Is or not Hazardous (touch status bar, fitsSystemWindows)
 - Like a form page, pairs of label and text in a horizontal manner
 	- Close approach date
-	- Absolute magnitude (au)
+	- Absolute magnitude (H)
 	- Estimated diameter (m)
 	- Relative velocity (km/s)
 	- Distance from Earth (km)

@@ -4,25 +4,52 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import dev.filipebezerra.android.nearearthasteroids.R
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import dev.filipebezerra.android.nearearthasteroids.databinding.AsteroidDetailScreenBinding
+import dev.filipebezerra.android.nearearthasteroids.ui.asteroiddetail.AsteroidDetailViewModel.Companion.provideFactory
 
 class AsteroidDetailScreen : Fragment() {
 
-    private val asteroidDetailViewModel: AsteroidDetailViewModel by viewModels()
+    private val arguments: AsteroidDetailScreenArgs by navArgs()
+
+    private val asteroidDetailViewModel: AsteroidDetailViewModel by viewModels {
+        provideFactory(arguments.asteroidId)
+    }
 
     private lateinit var viewBinding: AsteroidDetailScreenBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = AsteroidDetailScreenBinding.inflate(inflater)
+    ): View = AsteroidDetailScreenBinding.inflate(inflater)
         .apply {
             viewBinding = this
             viewModel = asteroidDetailViewModel
-            lifecycleOwner = viewLifecycleOwner
+
+            with(viewBinding.toolbar) {
+                setNavigationOnClickListener { view -> view.findNavController().navigateUp() }
+            }
+
+            var isToolbarShown = false
+            asteroidDetailScrollview.setOnScrollChangeListener(
+                NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
+                    val shouldShowToolbar = scrollY > toolbar.height
+                    if (isToolbarShown != shouldShowToolbar) {
+                        isToolbarShown = shouldShowToolbar
+                        appBar.isActivated = shouldShowToolbar
+                        toolbarLayout.isTitleEnabled = shouldShowToolbar
+                    }
+                }
+            )
         }
         .root
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewBinding.lifecycleOwner = viewLifecycleOwner
+    }
 }
