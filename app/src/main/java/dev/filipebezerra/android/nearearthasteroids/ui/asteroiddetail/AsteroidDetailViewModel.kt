@@ -10,8 +10,8 @@ class AsteroidDetailViewModel private constructor(
     private val asteroidId: String
 ) : ViewModel() {
 
-    private val _asteroid = MutableLiveData<Asteroid>()
-    val asteroid: LiveData<Asteroid>
+    private val _asteroid = MutableLiveData<NearEarthObject>()
+    val nearEarthObject: LiveData<NearEarthObject>
         get() = _asteroid
 
     init {
@@ -19,22 +19,22 @@ class AsteroidDetailViewModel private constructor(
     }
 
     private fun loadAsteroidDetail() {
-        _asteroid.value = Asteroid(
+        _asteroid.value = NearEarthObject(
             id = "2007753",
             name = "7753 (1988 XB)",
             nasaJplUrl = "http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=2007753",
             absoluteMagnitude = 18.6F,
             estimatedDiameter = EstimatedDiameter(
-                EstimatedDiameterInMeters(
-                    minimum = 0.3195618867,
-                    maximum = 0.7145621017,
+                DiameterRange(
+                    minimumDiameter = 0.3195618867,
+                    maximumDiameter = 0.7145621017,
                 ),
             ),
             isPotentiallyHazardousAsteroid = true,
             closeApproachData = listOf(
                 CloseApproachData(
                     approachDate = "2020-11-25",
-                    approachDateFull = "2020-Nov-25 03:24",
+                    approachEpochDate = 1606400040000,
                     relativeVelocity = RelativeVelocity(
                         kilometersPerSecond = 11.5154455613,
                     ),

@@ -40,7 +40,7 @@
                 app:contentScrim="?attr/colorSurface"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:statusBarScrim="?attr/colorSurface"
-                app:title="@{viewModel.asteroid.name}"
+                app:title="@{viewModel.nearEarthObject.name}"
                 app:titleEnabled="false"
                 app:toolbarId="@id/toolbar"
                 >
@@ -51,7 +51,7 @@
                     android:contentDescription="@string/asteroid_detail_image_content_description"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    app:asteroidHazardousOrSafe="@{viewModel.asteroid.isPotentiallyHazardousAsteroid}"
+                    app:asteroidHazardousOrSafe="@{viewModel.nearEarthObject.isPotentiallyHazardousAsteroid}"
                     app:layout_collapseMode="parallax"
                     tools:src="@tools:sample/backgrounds/scenic"
                     />
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/small_spacing"
                     android:gravity="center_horizontal"
-                    android:text="@{@string/asteroid_name_format(viewModel.asteroid.name)}"
+                    android:text="@{@string/asteroid_name_format(viewModel.nearEarthObject.name)}"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:textIsSelectable="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +109,7 @@
                 <TextView
                     android:id="@+id/close_approach_date_text"
                     style="@style/Widget.NearEarthAsteroids.AsteroidInfoTextView"
-                    android:text="@{viewModel.asteroid.closeApproachData[0].approachDate}"
+                    android:text="@{viewModel.nearEarthObject.closeApproachData[0].approachDate}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/close_approach_date_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/close_approach_date_label"
@@ -127,7 +127,7 @@
                 <TextView
                     android:id="@+id/absolute_magnitude_text"
                     style="@style/Widget.NearEarthAsteroids.AsteroidInfoTextView"
-                    android:text="@{@string/absolute_magnitude_format(viewModel.asteroid.absoluteMagnitude)}"
+                    android:text="@{@string/absolute_magnitude_format(viewModel.nearEarthObject.absoluteMagnitude)}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/absolute_magnitude_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/absolute_magnitude_label"
@@ -145,7 +145,7 @@
                 <TextView
                     android:id="@+id/estimated_diameter"
                     style="@style/Widget.NearEarthAsteroids.AsteroidInfoTextView"
-                    android:text="@{@string/estimated_diameter_format(viewModel.asteroid.estimatedDiameter.meters.minimum, viewModel.asteroid.estimatedDiameter.meters.maximum)}"
+                    android:text="@{@string/estimated_diameter_format(viewModel.nearEarthObject.estimatedDiameter.meters.minimumDiameter, viewModel.nearEarthObject.estimatedDiameter.meters.maximumDiameter)}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/estimated_diameter_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/estimated_diameter_label"
@@ -163,7 +163,7 @@
                 <TextView
                     android:id="@+id/relative_velocity"
                     style="@style/Widget.NearEarthAsteroids.AsteroidInfoTextView"
-                    android:text="@{@string/relative_velocity_format(viewModel.asteroid.closeApproachData[0].relativeVelocity.kilometersPerSecond)}"
+                    android:text="@{@string/relative_velocity_format(viewModel.nearEarthObject.closeApproachData[0].relativeVelocity.kilometersPerSecond)}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/relative_velocity_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/relative_velocity_label"
@@ -181,7 +181,7 @@
                 <TextView
                     android:id="@+id/distance_from_earth"
                     style="@style/Widget.NearEarthAsteroids.AsteroidInfoTextView"
-                    android:text="@{@string/distance_from_earth_format(viewModel.asteroid.closeApproachData[0].missDistance.kilometers)}"
+                    android:text="@{@string/distance_from_earth_format(viewModel.nearEarthObject.closeApproachData[0].missDistance.kilometers)}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/distance_from_earth_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/distance_from_earth_label"
@@ -200,7 +200,7 @@
                 <TextView
                     android:id="@+id/orbit_class_description"
                     style="@style/Widget.NearEarthAsteroids.AsteroidInfoTextView.OrbitInfo"
-                    android:text="@{viewModel.asteroid.orbitalData.orbitClass.description}"
+                    android:text="@{viewModel.nearEarthObject.orbitalData.orbitClass.description}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/orbit_class_description_label"

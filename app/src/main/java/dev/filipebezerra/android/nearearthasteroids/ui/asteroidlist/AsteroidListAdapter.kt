@@ -7,11 +7,11 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import dev.filipebezerra.android.nearearthasteroids.data.entity.Asteroid
+import dev.filipebezerra.android.nearearthasteroids.data.entity.NearEarthObject
 import dev.filipebezerra.android.nearearthasteroids.databinding.AsteroidListItemBinding
 import dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidListScreenDirections.Companion.actionAsteroidListToAsteroidDetail as toAsteroidDetail
 
-class AsteroidListAdapter : ListAdapter<Asteroid, AsteroidItemViewHolder>(AsteroidItemDiff()) {
+class AsteroidListAdapter : ListAdapter<NearEarthObject, AsteroidItemViewHolder>(AsteroidItemDiff()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         AsteroidItemViewHolder.from(parent)
 
@@ -32,7 +32,7 @@ class AsteroidItemViewHolder private constructor(
     private fun navigateToAsteroidDetail(view: View, asteroidId: String) =
         view.findNavController().navigate(toAsteroidDetail(asteroidId))
 
-    fun bindTo(item: Asteroid) = with(itemBinding) {
+    fun bindTo(item: NearEarthObject) = with(itemBinding) {
         asteroid = item
         executePendingBindings()
     }
@@ -47,10 +47,10 @@ class AsteroidItemViewHolder private constructor(
     }
 }
 
-class AsteroidItemDiff : DiffUtil.ItemCallback<Asteroid>() {
-    override fun areItemsTheSame(oldItem: Asteroid, newItem: Asteroid) =
+class AsteroidItemDiff : DiffUtil.ItemCallback<NearEarthObject>() {
+    override fun areItemsTheSame(oldItem: NearEarthObject, newItem: NearEarthObject) =
         oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: Asteroid, newItem: Asteroid) =
+    override fun areContentsTheSame(oldItem: NearEarthObject, newItem: NearEarthObject) =
         oldItem == newItem
 }

@@ -1,3 +1,5 @@
 package dev.filipebezerra.android.nearearthasteroids.data.entity
 
-data class RelativeVelocity(val kilometersPerSecond: Double)
+import com.squareup.moshi.Json
+
+data class RelativeVelocity(@Json(name = "kilometers_per_second") val kilometersPerSecond: Double)

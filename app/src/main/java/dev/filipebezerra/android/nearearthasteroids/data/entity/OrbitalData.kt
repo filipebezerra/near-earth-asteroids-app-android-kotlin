@@ -1,9 +1,7 @@
 package dev.filipebezerra.android.nearearthasteroids.data.entity
 
-data class OrbitalData(
-    val orbitClass: OrbitClass,
-)
+import com.squareup.moshi.Json
 
-data class OrbitClass(
-    val description: String
-)
+data class OrbitalData(@Json(name = "orbit_class") val orbitClass: OrbitClass)
+
+data class OrbitClass(@Json(name = "orbit_class_description") val description: String)

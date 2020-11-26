@@ -3,12 +3,17 @@ package dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dev.filipebezerra.android.nearearthasteroids.data.entity.*
+import androidx.lifecycle.viewModelScope
+import dev.filipebezerra.android.nearearthasteroids.data.entity.NearEarthObject
+import dev.filipebezerra.android.nearearthasteroids.data.remote.NeoWsApi
+import kotlinx.coroutines.launch
 
 class AsteroidListViewModel : ViewModel() {
 
-    private val _asteroids = MutableLiveData<List<Asteroid>>()
-    val asteroids: LiveData<List<Asteroid>>
+    private val _asteroids = MutableLiveData<List<NearEarthObject>>().apply {
+        value = emptyList()
+    }
+    val asteroids: LiveData<List<NearEarthObject>>
         get() = _asteroids
 
     init {
@@ -16,130 +21,14 @@ class AsteroidListViewModel : ViewModel() {
     }
 
     private fun loadAsteroidList() {
-        _asteroids.value = listOf(
-            Asteroid(
-                id = "2007753",
-                name = "7753 (1988 XB)",
-                nasaJplUrl = "http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=2007753",
-                absoluteMagnitude = 18.6F,
-                estimatedDiameter = EstimatedDiameter(
-                    EstimatedDiameterInMeters(
-                        minimum = 0.3195618867,
-                        maximum = 1.1325046106,
-                    ),
-                ),
-                isPotentiallyHazardousAsteroid = true,
-                closeApproachData = listOf(
-                    CloseApproachData(
-                        approachDate = "2020-11-25",
-                        approachDateFull = "2020-Nov-25 03:24",
-                        relativeVelocity = RelativeVelocity(
-                            kilometersPerSecond = 11.5154455613,
-                        ),
-                        missDistance = MissDistance(
-                            kilometers = 0.066192904,
-                        ),
-                    ),
-                ),
-                orbitalData = OrbitalData(
-                    orbitClass = OrbitClass(
-                        description = "Near-Earth asteroid orbits which cross the Earth’s orbit similar to that of 1862 Apollo"
-                    )
-                ),
-            ),
-
-            Asteroid(
-                id = "2007753",
-                name = "7753 (1988 XB)",
-                nasaJplUrl = "http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=2007753",
-                absoluteMagnitude = 18.6F,
-                estimatedDiameter = EstimatedDiameter(
-                    EstimatedDiameterInMeters(
-                        minimum = 0.3195618867,
-                        maximum = 1.1325046106,
-                    ),
-                ),
-                isPotentiallyHazardousAsteroid = true,
-                closeApproachData = listOf(
-                    CloseApproachData(
-                        approachDate = "2020-11-25",
-                        approachDateFull = "2020-Nov-25 03:24",
-                        relativeVelocity = RelativeVelocity(
-                            kilometersPerSecond = 11.5154455613,
-                        ),
-                        missDistance = MissDistance(
-                            kilometers = 0.066192904,
-                        ),
-                    ),
-                ),
-                orbitalData = OrbitalData(
-                    orbitClass = OrbitClass(
-                        description = "Near-Earth asteroid orbits which cross the Earth’s orbit similar to that of 1862 Apollo"
-                    )
-                ),
-            ),
-
-            Asteroid(
-                id = "2007753",
-                name = "7753 (1988 XB)",
-                nasaJplUrl = "http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=2007753",
-                absoluteMagnitude = 18.6F,
-                estimatedDiameter = EstimatedDiameter(
-                    EstimatedDiameterInMeters(
-                        minimum = 0.3195618867,
-                        maximum = 1.1325046106,
-                    ),
-                ),
-                isPotentiallyHazardousAsteroid = true,
-                closeApproachData = listOf(
-                    CloseApproachData(
-                        approachDate = "2020-11-25",
-                        approachDateFull = "2020-Nov-25 03:24",
-                        relativeVelocity = RelativeVelocity(
-                            kilometersPerSecond = 11.5154455613,
-                        ),
-                        missDistance = MissDistance(
-                            kilometers = 0.066192904,
-                        ),
-                    ),
-                ),
-                orbitalData = OrbitalData(
-                    orbitClass = OrbitClass(
-                        description = "Near-Earth asteroid orbits which cross the Earth’s orbit similar to that of 1862 Apollo"
-                    )
-                ),
-            ),
-
-            Asteroid(
-                id = "2007753",
-                name = "7753 (1988 XB)",
-                nasaJplUrl = "http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=2007753",
-                absoluteMagnitude = 18.6F,
-                estimatedDiameter = EstimatedDiameter(
-                    EstimatedDiameterInMeters(
-                        minimum = 0.3195618867,
-                        maximum = 1.1325046106,
-                    ),
-                ),
-                isPotentiallyHazardousAsteroid = true,
-                closeApproachData = listOf(
-                    CloseApproachData(
-                        approachDate = "2020-11-25",
-                        approachDateFull = "2020-Nov-25 03:24",
-                        relativeVelocity = RelativeVelocity(
-                            kilometersPerSecond = 11.5154455613,
-                        ),
-                        missDistance = MissDistance(
-                            kilometers = 0.066192904,
-                        ),
-                    ),
-                ),
-                orbitalData = OrbitalData(
-                    orbitClass = OrbitClass(
-                        description = "Near-Earth asteroid orbits which cross the Earth’s orbit similar to that of 1862 Apollo"
-                    )
-                ),
-            ),
-        )
+        viewModelScope.launch {
+            try {
+                val neoFeed = NeoWsApi.service.retrieveNearEarthObjects()
+                _asteroids.value = neoFeed.asteroidsByDate["2020-11-26"]
+            } catch (fail: Exception) {
+                // TODO: Log to Bugsnag/Firebase Crashlytics
+                // TODO: Give visual feedback to user
+            }
+        }
     }
 }

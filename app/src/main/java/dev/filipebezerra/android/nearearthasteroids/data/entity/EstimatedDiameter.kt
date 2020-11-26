@@ -1,10 +1,12 @@
 package dev.filipebezerra.android.nearearthasteroids.data.entity
 
+import com.squareup.moshi.Json
+
 data class EstimatedDiameter(
-    val meters: EstimatedDiameterInMeters
+    val meters: DiameterRange
 )
 
-data class EstimatedDiameterInMeters(
-    val minimum: Double,
-    val maximum: Double,
+data class DiameterRange(
+    @Json(name = "estimated_diameter_min") val minimumDiameter: Double,
+    @Json(name = "estimated_diameter_max") val maximumDiameter: Double,
 )
