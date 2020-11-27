@@ -41,9 +41,10 @@ android {
 }
 
 dependencies {
-    // Android
+    // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
+    // Android
     // https://developer.android.com/jetpack/androidx/releases/core
     implementation "androidx.core:core-ktx:$core_ktx_version"
 
@@ -68,7 +69,6 @@ dependencies {
 
     // https://developer.android.com/jetpack/androidx/releases/room
     implementation "androidx.room:room-runtime:$room_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
 
@@ -95,15 +95,6 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$moshi_version"
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
-
-    // Testing
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    testImplementation "androidx.arch.core:core-testing:$arch_version"
-    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
-    testImplementation "androidx.room:room-testing:$room_version"
-    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp3_version"
 }
 
 def getNeoWsApiKey() {
