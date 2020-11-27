@@ -95,6 +95,8 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$moshi_version"
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 }
 
 def getNeoWsApiKey() {

@@ -2,6 +2,7 @@
 <resources>
     <dimen name="small_spacing">8dp</dimen>
     <dimen name="normal_spacing">16dp</dimen>
+    <dimen name="large_spacing">32dp</dimen>
     <dimen name="media_image_height">194dp</dimen>
     <dimen name="default_line_spacing_extra">1.2dp</dimen>
     <dimen name="asteroid_detail_app_bar_height">278dp</dimen>
