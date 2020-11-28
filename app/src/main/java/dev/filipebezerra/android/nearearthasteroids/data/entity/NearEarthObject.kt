@@ -1,7 +1,10 @@
 package dev.filipebezerra.android.nearearthasteroids.data.entity
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class NearEarthObject(
     val id: String,
     val name: String,
@@ -11,4 +14,4 @@ data class NearEarthObject(
     @Json(name = "is_potentially_hazardous_asteroid") val isPotentiallyHazardousAsteroid: Boolean,
     @Json(name = "close_approach_data") val closeApproachData: List<CloseApproachData>,
     @Json(name = "orbital_data") val orbitalData: OrbitalData,
-)
+) : Parcelable

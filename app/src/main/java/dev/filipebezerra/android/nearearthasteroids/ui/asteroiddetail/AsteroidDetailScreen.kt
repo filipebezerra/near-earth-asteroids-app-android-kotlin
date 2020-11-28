@@ -17,7 +17,7 @@ class AsteroidDetailScreen : Fragment() {
     private val arguments: AsteroidDetailScreenArgs by navArgs()
 
     private val asteroidDetailViewModel: AsteroidDetailViewModel by viewModels {
-        provideFactory(arguments.asteroidId)
+        provideFactory(arguments.asteroid)
     }
 
     private lateinit var viewBinding: AsteroidDetailScreenBinding

@@ -32,7 +32,7 @@ class AsteroidListViewModel : ViewModel() {
             try {
                 _apiCallStatus.value = ApiCallStatus.LOADING
                 val neoFeed = NeoWsApi.service.retrieveNearEarthObjects()
-                _asteroids.value = neoFeed.asteroidsByDate["2020-11-27"]
+                _asteroids.value = neoFeed.asteroidsByDate["2020-11-28"]
                 _apiCallStatus.value = ApiCallStatus.SUCCESS
             } catch (fail: Exception) {
                 _apiCallStatus.value = ApiCallStatus.ERROR

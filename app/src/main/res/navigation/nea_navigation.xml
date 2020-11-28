@@ -26,8 +26,8 @@
         tools:layout="@layout/asteroid_detail_screen"
         >
         <argument
-            android:name="asteroidId"
-            app:argType="string"
+            android:name="asteroid"
+            app:argType="dev.filipebezerra.android.nearearthasteroids.data.entity.NearEarthObject"
             />
     </fragment>
 </navigation>

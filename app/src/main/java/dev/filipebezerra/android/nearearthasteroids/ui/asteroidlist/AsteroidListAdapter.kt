@@ -24,13 +24,13 @@ class AsteroidItemViewHolder private constructor(
 ) : RecyclerView.ViewHolder(itemBinding.root) {
 
     init {
-        itemBinding.setClickListener { view -> itemBinding.asteroid?.id?.let { asteroidId ->
-            navigateToAsteroidDetail(view, asteroidId)
+        itemBinding.setClickListener { view -> itemBinding.asteroid?.let { asteroid ->
+            navigateToAsteroidDetail(view, asteroid)
         }}
     }
 
-    private fun navigateToAsteroidDetail(view: View, asteroidId: String) =
-        view.findNavController().navigate(toAsteroidDetail(asteroidId))
+    private fun navigateToAsteroidDetail(view: View, asteroid: NearEarthObject) =
+        view.findNavController().navigate(toAsteroidDetail(asteroid))
 
     fun bindTo(item: NearEarthObject) = with(itemBinding) {
         asteroid = item
