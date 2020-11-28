@@ -22,7 +22,7 @@
     <!-- Common -->
     <string name="asteroid_name_format">Asteroid %s</string>
     <string name="absolute_magnitude_format">%.1f</string>
-    <string name="estimated_diameter_format">%.3f - %.3f</string>
+    <string name="estimated_diameter_format">%1$.3f - %2$.3f</string>
     <string name="relative_velocity_format">%.3f</string>
     <string name="distance_from_earth_format">%.3f</string>
     <string name="retry_button">Retry</string>
