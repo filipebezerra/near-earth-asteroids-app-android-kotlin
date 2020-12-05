@@ -27,7 +27,7 @@
         >
         <argument
             android:name="asteroid"
-            app:argType="dev.filipebezerra.android.nearearthasteroids.data.entity.NearEarthObject"
+            app:argType="dev.filipebezerra.android.nearearthasteroids.data.entity.Asteroid"
             />
     </fragment>
 </navigation>

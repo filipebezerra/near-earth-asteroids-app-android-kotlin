@@ -1,4 +1,4 @@
-package dev.filipebezerra.android.nearearthasteroids.data.remote
+package dev.filipebezerra.android.nearearthasteroids.data.source.remote
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

@@ -10,14 +10,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import dev.filipebezerra.android.nearearthasteroids.databinding.AsteroidDetailScreenBinding
-import dev.filipebezerra.android.nearearthasteroids.ui.asteroiddetail.AsteroidDetailViewModel.Companion.provideFactory
+import dev.filipebezerra.android.nearearthasteroids.ui.util.ext.getViewModelFactory
 
 class AsteroidDetailScreen : Fragment() {
 
     private val arguments: AsteroidDetailScreenArgs by navArgs()
 
     private val asteroidDetailViewModel: AsteroidDetailViewModel by viewModels {
-        provideFactory(arguments.asteroid)
+        getViewModelFactory()
     }
 
     private lateinit var viewBinding: AsteroidDetailScreenBinding
@@ -50,6 +50,7 @@ class AsteroidDetailScreen : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        asteroidDetailViewModel.initialize(arguments.asteroid)
         viewBinding.lifecycleOwner = viewLifecycleOwner
     }
 }

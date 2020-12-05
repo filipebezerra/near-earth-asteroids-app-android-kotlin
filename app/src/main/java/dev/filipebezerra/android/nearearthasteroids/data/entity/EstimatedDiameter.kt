@@ -1,16 +1,11 @@
 package dev.filipebezerra.android.nearearthasteroids.data.entity
 
 import android.os.Parcelable
-import com.squareup.moshi.Json
+import androidx.room.ColumnInfo
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class EstimatedDiameter(
-    val meters: DiameterRange
-)  : Parcelable
-
-@Parcelize
-data class DiameterRange(
-    @Json(name = "estimated_diameter_min") val minimumDiameter: Double,
-    @Json(name = "estimated_diameter_max") val maximumDiameter: Double,
-)  : Parcelable
+    @ColumnInfo(name = "min_in_meters") val minimumInMeters: Double? = null,
+    @ColumnInfo(name = "max_in_meters") val maximumInMeters: Double? = null,
+) : Parcelable

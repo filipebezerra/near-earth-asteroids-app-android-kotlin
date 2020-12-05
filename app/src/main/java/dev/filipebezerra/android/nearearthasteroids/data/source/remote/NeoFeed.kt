@@ -1,7 +1,7 @@
-package dev.filipebezerra.android.nearearthasteroids.data.remote
+package dev.filipebezerra.android.nearearthasteroids.data.source.remote
 
 import com.squareup.moshi.Json
-import dev.filipebezerra.android.nearearthasteroids.data.entity.NearEarthObject
+import dev.filipebezerra.android.nearearthasteroids.data.NearEarthObject
 
 data class NeoFeed(
     @Json(name = "element_count") val elementCount: Int,

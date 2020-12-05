@@ -4,17 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.filipebezerra.android.nearearthasteroids.data.entity.NearEarthObject
-import dev.filipebezerra.android.nearearthasteroids.data.remote.ApiCallStatus
-import dev.filipebezerra.android.nearearthasteroids.data.remote.NeoWsApi
+import dev.filipebezerra.android.nearearthasteroids.data.entity.Asteroid
+import dev.filipebezerra.android.nearearthasteroids.data.source.remote.ApiCallStatus
+import dev.filipebezerra.android.nearearthasteroids.data.source.AsteroidRepository
 import kotlinx.coroutines.launch
 
-class AsteroidListViewModel : ViewModel() {
+class AsteroidListViewModel(
+    private val asteroidRepository: AsteroidRepository
+) : ViewModel() {
 
-    private val _asteroids = MutableLiveData<List<NearEarthObject>>().apply {
+    private val _asteroids = MutableLiveData<List<Asteroid>>().apply {
         value = emptyList()
     }
-    val asteroids: LiveData<List<NearEarthObject>>
+    val asteroids: LiveData<List<Asteroid>>
         get() = _asteroids
 
     private val _apiCallStatus = MutableLiveData<ApiCallStatus>()
@@ -31,8 +33,7 @@ class AsteroidListViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _apiCallStatus.value = ApiCallStatus.LOADING
-                val neoFeed = NeoWsApi.service.retrieveNearEarthObjects()
-                _asteroids.value = neoFeed.asteroidsByDate["2020-11-28"]
+                _asteroids.value = asteroidRepository.getAsteroids()
                 _apiCallStatus.value = ApiCallStatus.SUCCESS
             } catch (fail: Exception) {
                 _apiCallStatus.value = ApiCallStatus.ERROR

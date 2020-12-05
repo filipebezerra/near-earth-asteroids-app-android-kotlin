@@ -8,10 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dev.filipebezerra.android.nearearthasteroids.databinding.AsteroidListScreenBinding
+import dev.filipebezerra.android.nearearthasteroids.ui.util.ext.getViewModelFactory
 
 class AsteroidListScreen : Fragment() {
 
-    private val asteroidListViewModel: AsteroidListViewModel by viewModels()
+    private val asteroidListViewModel: AsteroidListViewModel by viewModels { getViewModelFactory() }
 
     private lateinit var viewBinding: AsteroidListScreenBinding
 

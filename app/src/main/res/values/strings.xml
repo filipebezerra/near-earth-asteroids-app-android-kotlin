@@ -18,6 +18,7 @@
     <string name="estimated_diameter_label">Estimated diameter (m):</string>
     <string name="distance_from_earth_label">Distance from Earth (km):</string>
     <string name="orbit_class_description_label">Orbit class</string>
+    <string name="close_approach_date_format">%1$s (%2$s)</string>
 
     <!-- Common -->
     <string name="asteroid_name_format">Asteroid %s</string>

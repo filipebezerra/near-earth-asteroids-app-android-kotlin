@@ -5,12 +5,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import dev.filipebezerra.android.nearearthasteroids.R
-import dev.filipebezerra.android.nearearthasteroids.data.entity.NearEarthObject
-import dev.filipebezerra.android.nearearthasteroids.data.remote.ApiCallStatus
+import dev.filipebezerra.android.nearearthasteroids.data.entity.Asteroid
+import dev.filipebezerra.android.nearearthasteroids.data.source.remote.ApiCallStatus
 
 @BindingAdapter("asteroidList")
-fun bindAsteroidList(listView: RecyclerView, nearEarthObjects: List<NearEarthObject>) =
-    (listView.adapter as AsteroidListAdapter).submitList(nearEarthObjects)
+fun bindAsteroidList(listView: RecyclerView, asteroids: List<Asteroid>) =
+    (listView.adapter as AsteroidListAdapter).submitList(asteroids)
 
 @BindingAdapter("apiCallStatus")
 fun bindApiCallStatus(view: View, apiCallStatus: ApiCallStatus) {
