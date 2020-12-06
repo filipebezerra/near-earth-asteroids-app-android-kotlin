@@ -1,5 +1,6 @@
 package dev.filipebezerra.android.nearearthasteroids.data.source.remote
 
+import dev.filipebezerra.android.nearearthasteroids.ServiceLocator
 import dev.filipebezerra.android.nearearthasteroids.data.entity.Asteroid
 import dev.filipebezerra.android.nearearthasteroids.data.source.AsteroidDataSource
 import dev.filipebezerra.android.nearearthasteroids.util.LocalDateExt.dateNowFormatted
@@ -7,8 +8,10 @@ import kotlinx.coroutines.flow.Flow
 
 object AsteroidRemoteDataSource : AsteroidDataSource {
 
+    private val neoWsService by lazy { ServiceLocator.provideNeoWsService() }
+
     override suspend fun getAsteroids(): List<Asteroid> =
-        NeoWsApi.service.retrieveNearEarthObjects().asteroidsByDate
+        neoWsService.retrieveNearEarthObjects().asteroidsByDate
             .getOrDefault(dateNowFormatted(), emptyList()).map { Asteroid(it) }
 
     override fun observeAsteroids(): Flow<List<Asteroid>> {

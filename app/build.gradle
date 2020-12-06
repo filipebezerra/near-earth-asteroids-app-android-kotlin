@@ -20,7 +20,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en"
 
-        buildConfigField("String", "NEOWS_API_KEY", "\"" + getNeoWsApiKey() + "\"")
+        buildConfigField("String", "NASA_API_KEY", "\"" + getNasaApiKey() + "\"")
 
         javaCompileOptions {
             // https://developer.android.com/studio/build/optimize-your-build#incremental-annotation-processor-support
@@ -134,6 +134,6 @@ dependencies {
     androidTestImplementation "androidx.room:room-testing:$rootProject.room_version"
 }
 
-def getNeoWsApiKey() {
-    return project.findProperty("neows_api_key")
+def getNasaApiKey() {
+    return project.findProperty("nasa_api_key")
 }
