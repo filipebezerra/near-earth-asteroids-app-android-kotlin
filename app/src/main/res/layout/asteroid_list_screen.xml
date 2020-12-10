@@ -7,6 +7,8 @@
     >
 
     <data>
+        <import type="dev.filipebezerra.android.nearearthasteroids.R" alias="appR" />
+
         <variable
             name="viewModel"
             type="dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidListViewModel"
@@ -16,39 +18,58 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/colorSurface"
         android:fitsSystemWindows="true"
         >
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/asteroid_list_app_bar_height"
+            android:animateLayoutChanges="true"
+            android:background="?attr/colorSurface"
             android:fitsSystemWindows="true"
+            android:stateListAnimator="@animator/show_toolbar"
             android:theme="@style/Theme.NearEarthAsteroids.AppBarOverlay"
             >
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|snap"
+                android:fitsSystemWindows="true"
+                app:collapsedTitleGravity="center"
+                app:collapsedTitleTextAppearance="@style/TextAppearance.NearEarthAsteroids.Toolbar.Text"
+                app:expandedTitleGravity="bottom|end"
+                app:expandedTitleTextAppearance="?attr/textAppearanceSubtitle1"
+                app:contentScrim="?attr/colorSurface"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:statusBarScrim="?attr/colorSurface"
+                app:title="@{viewModel.pictureOfTheDay.title}"
+                app:titleEnabled="true"
                 app:toolbarId="@id/toolbar"
                 >
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/asteroid_list_app_bar_height"
+                    android:contentDescription="@{viewModel.pictureOfTheDay.title}"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"
+                    bind:imageUrl="@{viewModel.pictureOfTheDay.hdPictureUrl}"
+                    bind:bitmap="@{true}"
+                    bind:placeholder="@{appR.drawable.apod}"
+                    tools:src="@tools:sample/backgrounds/scenic"
+                    />
+
                 <androidx.appcompat.widget.Toolbar
                     android:id="@id/toolbar"
-                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="parallax"
-                    >
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:gravity="center"
-                        android:text="@string/app_name"
-                        android:textAppearance="?attr/textAppearanceHeadline5"
-                        />
-                </androidx.appcompat.widget.Toolbar>
+                    android:background="@android:color/transparent"
+                    app:layout_collapseMode="pin"
+                    />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -73,15 +94,14 @@
                 android:scrollbars="none"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 bind:asteroidList="@{viewModel.asteroids}"
-                bind:apiCallStatus="@{viewModel.apiCallStatus}"
                 tools:itemCount="4"
                 tools:listitem="@layout/asteroid_list_item"
                 />
 
             <include
-                android:id="@+id/no_network_view"
+                android:id="@+id/asteroid_list_error"
                 android:visibility="gone"
-                layout="@layout/no_network_view"
+                layout="@layout/asteroid_list_error"
                 bind:viewModel="@{viewModel}"
                 />
         </FrameLayout>

@@ -5,7 +5,10 @@ import dev.filipebezerra.android.nearearthasteroids.NeaApplication
 import dev.filipebezerra.android.nearearthasteroids.ViewModelFactory
 
 fun Fragment.getViewModelFactory(): ViewModelFactory =
-    ViewModelFactory(
-        (requireContext().applicationContext as NeaApplication).asteroidRepository,
-        this,
-    )
+    with((requireContext().applicationContext as NeaApplication)) {
+        ViewModelFactory(
+            asteroidRepository,
+            pictureOfDayRepository,
+        this@getViewModelFactory,
+        )
+    }

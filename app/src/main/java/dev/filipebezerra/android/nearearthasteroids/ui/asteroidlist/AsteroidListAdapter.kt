@@ -7,8 +7,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import dev.filipebezerra.android.nearearthasteroids.data.entity.Asteroid
 import dev.filipebezerra.android.nearearthasteroids.databinding.AsteroidListItemBinding
+import dev.filipebezerra.android.nearearthasteroids.domain.Asteroid
 import dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidListScreenDirections.Companion.actionAsteroidListToAsteroidDetail as toAsteroidDetail
 
 class AsteroidListAdapter : ListAdapter<Asteroid, AsteroidItemViewHolder>(AsteroidItemDiff()) {
@@ -29,8 +29,8 @@ class AsteroidItemViewHolder private constructor(
         }}
     }
 
-    private fun navigateToAsteroidDetail(view: View, asteroid: Asteroid) =
-        view.findNavController().navigate(toAsteroidDetail(asteroid))
+    private fun navigateToAsteroidDetail(view: View, asteroidEntity: Asteroid) =
+        view.findNavController().navigate(toAsteroidDetail(asteroidEntity))
 
     fun bindTo(item: Asteroid) = with(itemBinding) {
         asteroid = item

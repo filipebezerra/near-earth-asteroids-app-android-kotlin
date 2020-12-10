@@ -3,7 +3,7 @@ package dev.filipebezerra.android.nearearthasteroids.ui.asteroiddetail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dev.filipebezerra.android.nearearthasteroids.data.entity.Asteroid
+import dev.filipebezerra.android.nearearthasteroids.domain.Asteroid
 
 class AsteroidDetailViewModel : ViewModel() {
 

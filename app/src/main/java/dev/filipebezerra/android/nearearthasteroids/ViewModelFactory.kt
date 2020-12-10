@@ -5,7 +5,8 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
-import dev.filipebezerra.android.nearearthasteroids.data.source.AsteroidRepository
+import dev.filipebezerra.android.nearearthasteroids.repository.AsteroidRepository
+import dev.filipebezerra.android.nearearthasteroids.repository.PictureOfDayRepository
 import dev.filipebezerra.android.nearearthasteroids.ui.asteroiddetail.AsteroidDetailViewModel
 import dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidListViewModel
 
@@ -15,6 +16,7 @@ import dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidList
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
     private val asteroidRepository: AsteroidRepository,
+    private val pictureOfDayRepository: PictureOfDayRepository,
     owner: SavedStateRegistryOwner,
     defaultArgs: Bundle? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
@@ -26,7 +28,10 @@ class ViewModelFactory constructor(
     ) = with(modelClass) {
         when {
             isAssignableFrom(AsteroidListViewModel::class.java) ->
-                AsteroidListViewModel(asteroidRepository)
+                AsteroidListViewModel(
+                    asteroidRepository,
+                    pictureOfDayRepository,
+                )
             isAssignableFrom(AsteroidDetailViewModel::class.java) ->
                 AsteroidDetailViewModel()
             else ->

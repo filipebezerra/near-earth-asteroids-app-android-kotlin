@@ -5,9 +5,11 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 object LocalDateExt {
-    fun dateNowFormatted(): String = LocalDate.now().toIsoLocalDate()
+    fun dateNowAsIsoLocalDate(): String = LocalDate.now().asIsoLocalDate()
+
+    fun oneWeekFromNow(): LocalDate = LocalDate.now().plusWeeks(1)
 }
 
-fun LocalDate.toIsoLocalDate(): String = format(DateTimeFormatter.ISO_LOCAL_DATE)
+fun LocalDate.asIsoLocalDate(): String = format(DateTimeFormatter.ISO_LOCAL_DATE)
 
 fun LocalDate.toEpochMilli(): Long = atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()

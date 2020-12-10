@@ -5,15 +5,15 @@ import androidx.annotation.VisibleForTesting
 import androidx.room.Room
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import dev.filipebezerra.android.nearearthasteroids.data.source.AsteroidDataSource
-import dev.filipebezerra.android.nearearthasteroids.data.source.AsteroidRepository
-import dev.filipebezerra.android.nearearthasteroids.data.source.DefaultAsteroidRepository
-import dev.filipebezerra.android.nearearthasteroids.data.source.local.AsteroidDatabase
-import dev.filipebezerra.android.nearearthasteroids.data.source.local.AsteroidDatabase.Companion.DB_NAME
-import dev.filipebezerra.android.nearearthasteroids.data.source.local.AsteroidLocalDataSource
-import dev.filipebezerra.android.nearearthasteroids.data.source.remote.ApodWsService
-import dev.filipebezerra.android.nearearthasteroids.data.source.remote.AsteroidRemoteDataSource
-import dev.filipebezerra.android.nearearthasteroids.data.source.remote.NeoWsService
+import dev.filipebezerra.android.nearearthasteroids.database.AsteroidDao
+import dev.filipebezerra.android.nearearthasteroids.database.AsteroidDatabase
+import dev.filipebezerra.android.nearearthasteroids.database.AsteroidDatabase.Companion.DB_NAME
+import dev.filipebezerra.android.nearearthasteroids.datasource.remote.ApodWsService
+import dev.filipebezerra.android.nearearthasteroids.datasource.remote.NeoWsService
+import dev.filipebezerra.android.nearearthasteroids.repository.AsteroidRepository
+import dev.filipebezerra.android.nearearthasteroids.repository.DefaultAsteroidRepository
+import dev.filipebezerra.android.nearearthasteroids.repository.DefaultPictureOfDayRepository
+import dev.filipebezerra.android.nearearthasteroids.repository.PictureOfDayRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -22,8 +22,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 private const val NEO_BASE_API_URL = "https://api.nasa.gov/neo/rest/v1/"
 private const val APOD_BASE_API_URL = "https://api.nasa.gov/planetary/"
 
+// TODO: Migrate DI using Koin
 /**
- * A Service Locator object for the [AsteroidRepository].
+ * A Service Locator object for providing application dependencies.
  */
 object ServiceLocator {
 
@@ -63,6 +64,9 @@ object ServiceLocator {
     var asteroidRepository: AsteroidRepository? = null
         @VisibleForTesting set
 
+    @Volatile
+    var pictureOfDayRepository: PictureOfDayRepository? = null
+        @VisibleForTesting set
 
     @Volatile
     var neoWsService: NeoWsService? = null
@@ -72,63 +76,52 @@ object ServiceLocator {
     var apodWsService: ApodWsService? = null
         @VisibleForTesting set
 
-    fun provideNeoWsService(): NeoWsService {
-        synchronized(lock) {
-            return neoWsService ?: createNeoWsService()
-        }
+    fun provideAsteroidRepository(context: Context): AsteroidRepository = synchronized(lock) {
+        asteroidRepository ?: createAsteroidRepository(context)
     }
 
-    private fun createNeoWsService(): NeoWsService {
-        return with(retrofitBuilder.build()) {
-            return@with if (this.baseUrl().equals(NEO_BASE_API_URL))
-                create(NeoWsService::class.java)
-            else
-                newBuilder().baseUrl(NEO_BASE_API_URL).build().create(NeoWsService::class.java)
-        }
+    private fun createAsteroidRepository(context: Context): AsteroidRepository =
+        DefaultAsteroidRepository(
+            provideAsteroidDao(context),
+            provideNeoWsService(),
+        ).apply { asteroidRepository = this }
+
+    private fun provideAsteroidDao(context: Context): AsteroidDao =
+        createDatabase(context).run { asteroidDao() }
+
+    private fun createDatabase(context: Context): AsteroidDatabase = Room.databaseBuilder(
+        context.applicationContext,
+        AsteroidDatabase::class.java,
+        DB_NAME,
+    ).build().apply { database = this }
+
+    private fun provideNeoWsService(): NeoWsService = synchronized(lock) {
+        neoWsService ?: createNeoWsService()
     }
 
-    fun provideApodWsService(): ApodWsService {
-        synchronized(lock) {
-            return apodWsService ?: createApodWsService()
-        }
+    private fun createNeoWsService(): NeoWsService = with(retrofitBuilder.build()) {
+        if (this.baseUrl().equals(NEO_BASE_API_URL))
+            create(NeoWsService::class.java)
+        else
+            newBuilder().baseUrl(NEO_BASE_API_URL).build().create(NeoWsService::class.java)
     }
 
-    private fun createApodWsService(): ApodWsService {
-        return with(retrofitBuilder.build()) {
-            return@with if (this.baseUrl().equals(APOD_BASE_API_URL))
-                create(ApodWsService::class.java)
-            else
-                newBuilder().baseUrl(APOD_BASE_API_URL).build().create(ApodWsService::class.java)
-        }
+    fun providePictureOfTheDayRepository(): PictureOfDayRepository = synchronized(lock) {
+        pictureOfDayRepository ?: createPictureOfDayRepository()
     }
 
-    fun provideNearEarthObjectRepository(context: Context): AsteroidRepository {
-        synchronized(lock) {
-            return asteroidRepository ?: createNearEarthObjectRepository(context)
-        }
+    private fun createPictureOfDayRepository(): PictureOfDayRepository =
+        DefaultPictureOfDayRepository(provideApodWsService())
+            .apply { pictureOfDayRepository = this }
+
+    private fun provideApodWsService(): ApodWsService = synchronized(lock) {
+        apodWsService ?: createApodWsService()
     }
 
-    private fun createNearEarthObjectRepository(context: Context): AsteroidRepository {
-        val defaultRepository = DefaultAsteroidRepository(
-            AsteroidRemoteDataSource,
-            createNearEarthObjectLocalDataSource(context),
-        )
-        asteroidRepository = defaultRepository
-        return defaultRepository
-    }
-
-    private fun createNearEarthObjectLocalDataSource(context: Context): AsteroidDataSource {
-        val database = database ?: createDatabase(context)
-        return AsteroidLocalDataSource(database.asteroidDao())
-    }
-
-    private fun createDatabase(context: Context): AsteroidDatabase {
-        val databaseInstance = Room.databaseBuilder(
-            context.applicationContext,
-            AsteroidDatabase::class.java,
-            DB_NAME,
-        ).build()
-        database = databaseInstance
-        return databaseInstance
+    private fun createApodWsService(): ApodWsService = with(retrofitBuilder.build()) {
+        if (this.baseUrl().equals(APOD_BASE_API_URL))
+            create(ApodWsService::class.java)
+        else
+            newBuilder().baseUrl(APOD_BASE_API_URL).build().create(ApodWsService::class.java)
     }
 }

@@ -11,7 +11,7 @@
             />
         <variable
             name="asteroid"
-            type="dev.filipebezerra.android.nearearthasteroids.data.entity.Asteroid"
+            type="dev.filipebezerra.android.nearearthasteroids.domain.Asteroid"
             />
     </data>
 

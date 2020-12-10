@@ -8,4 +8,5 @@
     <dimen name="asteroid_detail_app_bar_height">278dp</dimen>
     <dimen name="toolbar_elevation">5dp</dimen>
     <dimen name="default_line_spacing">1.2dp</dimen>
+    <dimen name="asteroid_list_app_bar_height">278dp</dimen>
 </resources>
