@@ -2,13 +2,13 @@ package dev.filipebezerra.android.nearearthasteroids
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
-import androidx.room.Room
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dev.filipebezerra.android.nearearthasteroids.database.AsteroidDao
 import dev.filipebezerra.android.nearearthasteroids.database.AsteroidDatabase
-import dev.filipebezerra.android.nearearthasteroids.database.AsteroidDatabase.Companion.DB_NAME
+import dev.filipebezerra.android.nearearthasteroids.datasource.remote.APOD_BASE_API_URL
 import dev.filipebezerra.android.nearearthasteroids.datasource.remote.ApodWsService
+import dev.filipebezerra.android.nearearthasteroids.datasource.remote.NEO_BASE_API_URL
 import dev.filipebezerra.android.nearearthasteroids.datasource.remote.NeoWsService
 import dev.filipebezerra.android.nearearthasteroids.repository.AsteroidRepository
 import dev.filipebezerra.android.nearearthasteroids.repository.DefaultAsteroidRepository
@@ -18,9 +18,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-
-private const val NEO_BASE_API_URL = "https://api.nasa.gov/neo/rest/v1/"
-private const val APOD_BASE_API_URL = "https://api.nasa.gov/planetary/"
+import java.util.concurrent.TimeUnit.SECONDS
 
 // TODO: Migrate DI using Koin
 /**
@@ -44,9 +42,8 @@ object ServiceLocator {
             })
         // TODO Improve networking with Stetho for debugging
         // .addNetworkInterceptor()
-        // TODO Improve networking with timeout policy
-        // .readTimeout()
-        // .callTimeout()
+         .readTimeout(30, SECONDS)
+         .callTimeout(60, SECONDS)
         // TODO Improve networking with caching
         // .cache()
         // TODO Improve networking with retry policy
@@ -87,13 +84,11 @@ object ServiceLocator {
         ).apply { asteroidRepository = this }
 
     private fun provideAsteroidDao(context: Context): AsteroidDao =
-        createDatabase(context).run { asteroidDao() }
+        provideAsteroidDatabase(context).run { asteroidDao() }
 
-    private fun createDatabase(context: Context): AsteroidDatabase = Room.databaseBuilder(
-        context.applicationContext,
-        AsteroidDatabase::class.java,
-        DB_NAME,
-    ).build().apply { database = this }
+    private fun provideAsteroidDatabase(context: Context): AsteroidDatabase =
+        database ?: AsteroidDatabase.createDatabase(context)
+            .apply { database = this }
 
     private fun provideNeoWsService(): NeoWsService = synchronized(lock) {
         neoWsService ?: createNeoWsService()

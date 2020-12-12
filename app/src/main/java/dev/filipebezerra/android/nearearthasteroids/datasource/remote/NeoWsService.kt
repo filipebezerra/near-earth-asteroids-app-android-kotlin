@@ -4,6 +4,8 @@ import dev.filipebezerra.android.nearearthasteroids.BuildConfig
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+const val NEO_BASE_API_URL = "https://api.nasa.gov/neo/rest/v1/"
+
 interface NeoWsService {
     @GET("feed/today")
     suspend fun retrieveTodayNearEarthObjects(
