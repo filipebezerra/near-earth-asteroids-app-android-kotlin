@@ -43,7 +43,7 @@
                 app:expandedTitleGravity="bottom|end"
                 app:expandedTitleTextAppearance="?attr/textAppearanceSubtitle1"
                 app:contentScrim="?attr/colorSurface"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
                 app:statusBarScrim="?attr/colorSurface"
                 app:title="@{viewModel.pictureOfTheDay.title}"
                 app:titleEnabled="true"
