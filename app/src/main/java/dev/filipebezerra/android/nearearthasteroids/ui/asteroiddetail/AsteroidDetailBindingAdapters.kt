@@ -13,29 +13,30 @@ import dev.filipebezerra.android.nearearthasteroids.domain.CloseApproachData
 import dev.filipebezerra.android.nearearthasteroids.domain.EstimatedDiameter
 import dev.filipebezerra.android.nearearthasteroids.util.asIsoLocalDate
 import dev.filipebezerra.android.nearearthasteroids.util.toEpochMilli
+import java.time.Instant
+import java.time.Instant.now
 
 @BindingAdapter("imageUrl", "bitmap", "placeholder")
 fun ImageView.bindImageUrl(
     imageUrl: String?,
     bitmap: Boolean? = false,
     placeholder: Int? = null,
-) =
-    imageUrl?.let {
-        when (bitmap) {
-            true -> Glide.with(context)
-                .asBitmap()
-                .load(imageUrl)
-                .transition(BitmapTransitionOptions.withCrossFade())
-            else -> Glide.with(context)
-                .load(imageUrl)
-                .transition(DrawableTransitionOptions.withCrossFade())
-        }.apply {
-            placeholder?.let {
-                placeholder(it)
-                error(it)
-            }
-        }.run { into(this@bindImageUrl) }
-    }
+) = imageUrl?.let {
+    when (bitmap) {
+        true -> Glide.with(context)
+            .asBitmap()
+            .load(imageUrl)
+            .transition(BitmapTransitionOptions.withCrossFade())
+        else -> Glide.with(context)
+            .load(imageUrl)
+            .transition(DrawableTransitionOptions.withCrossFade())
+    }.apply {
+        placeholder?.let {
+            placeholder(it)
+            error(it)
+        }
+    }.run { into(this@bindImageUrl) }
+}
 
 @BindingAdapter("asteroidHazardousOrSafe")
 fun ImageView.bindAsteroidHazardousOrSafe(isPotentiallyHazardousAsteroid: Boolean) =
@@ -53,8 +54,8 @@ fun ImageView.bindAsteroidHazardousOrSafe(isPotentiallyHazardousAsteroid: Boolea
 fun TextView.bindCloseApproachDate(closeApproachDataEntity: CloseApproachData?) =
     closeApproachDataEntity?.approachDate?.let { approachDate ->
         getRelativeTimeSpanString(
-            System.currentTimeMillis(),
             approachDate.toEpochMilli(),
+            now().toEpochMilli(),
             DAY_IN_MILLIS
         ).let { relativeTime ->
             text = context.getString(
