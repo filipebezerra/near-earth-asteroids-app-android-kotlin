@@ -27,7 +27,7 @@ interface AsteroidDao {
      *
      * @return all [AsteroidEntity].
      */
-    @Query("SELECT * FROM asteroids ORDER BY close_approach_data_date between :fromDate and :toDate")
+    @Query("SELECT * FROM asteroids WHERE close_approach_data_date between :fromDate and :toDate ORDER BY close_approach_data_date ASC")
     fun observeAsteroids(
         fromDate: LocalDate,
         toDate: LocalDate
