@@ -132,7 +132,7 @@
                     app:layout_constraintBaseline_toBaselineOf="@+id/absolute_magnitude_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/absolute_magnitude_label"
-                    tools:text="17.6"
+                    tools:text="17.6 (H)"
                     />
 
                 <TextView
@@ -150,7 +150,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/estimated_diameter_label"
                     bind:estimatedDiameter="@{viewModel.asteroid.estimatedDiameter}"
-                    tools:text="100.729 - 225.237"
+                    tools:text="100.729 - 225.237 (m)"
                     />
 
                 <TextView
@@ -168,7 +168,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/relative_velocity_label"
                     bind:relativeVelocity="@{viewModel.asteroid.closeApproachData}"
-                    tools:text="15.888"
+                    tools:text="15.888 (km/s)"
                     />
 
                 <TextView
@@ -186,7 +186,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/distance_from_earth_label"
                     bind:distanceFromEarth="@{viewModel.asteroid.closeApproachData}"
-                    tools:text="33,192,703.513"
+                    tools:text="33,192,703.513 (km)"
                     />
 
                 <TextView
