@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Asteroid List screen -->
+    <string name="asteroid_image_content_description">Tamaño estimado del asteroide</string>
+    <string name="share_button_content_description">Compartir Asteroide</string>
+    <string name="more_info_button_content_description">Ver más información sobre el asteroide</string>
+    <string name="error_loading_image_content_description">Error al cargar datos de asteroides desde la imagen de Internet</string>
+    <string name="asteroid_name_format">Asteroide %s</string>
+    <string name="retry_button">Rever</string>
+    <string name="help_text_offline_text">Tu red no está disponible. Comprueba tu conexión de datos o wifi.</string>
+    <string name="offline_text">Desconectado</string>
+
+    <!-- Asteroid Detail screen -->
+    <string name="asteroid_detail_image_content_description">Imagen de asteroide siendo peligroso o seguro</string>
+    <string name="close_approach_date">Fecha aproximación:</string>
+    <string name="absolute_magnitude_label">Magnitud absoluta:</string>
+    <string name="relative_velocity_label">Velocidad relativa:</string>
+    <string name="estimated_diameter_label">Diámetro estimado:</string>
+    <string name="distance_from_earth_label">Distancia de la Tierra:</string>
+    <string name="orbit_class_description_label">Descripción de la órbita</string>
+</resources>
