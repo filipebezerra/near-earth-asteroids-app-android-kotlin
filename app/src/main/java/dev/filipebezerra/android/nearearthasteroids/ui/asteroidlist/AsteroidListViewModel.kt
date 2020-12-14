@@ -39,7 +39,7 @@ class AsteroidListViewModel(
         .asLiveData()
 
     @ExperimentalCoroutinesApi
-    val pictureOfTheDay: LiveData<PictureOfDay> = pictureOfDayRepository.getPictureOfTheDay()
+    val pictureOfDay: LiveData<PictureOfDay> = pictureOfDayRepository.getPictureOfTheDay()
         .onStart {
             // TODO: Give visual feedback to user when start loading picture of day
         }

@@ -15,6 +15,7 @@
         Your network is unavailable. Check your data or wifi connection.
     </string>
     <string name="offline_text">Offline</string>
+    <string name="picture_of_day_placeholder">Messier Craters in Stereo</string>
 
     <!-- Asteroid Detail screen -->
     <string name="asteroid_detail_image_content_description" translation_description="Content description for the header / hero image that is show at the top of the asteroid detail screen.">

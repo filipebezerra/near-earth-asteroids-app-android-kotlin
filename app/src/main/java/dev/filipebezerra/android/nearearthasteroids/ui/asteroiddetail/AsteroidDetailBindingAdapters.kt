@@ -8,35 +8,44 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import dev.filipebezerra.android.nearearthasteroids.R
 import dev.filipebezerra.android.nearearthasteroids.domain.CloseApproachData
 import dev.filipebezerra.android.nearearthasteroids.domain.EstimatedDiameter
+import dev.filipebezerra.android.nearearthasteroids.domain.PictureOfDay
 import dev.filipebezerra.android.nearearthasteroids.util.asIsoLocalDate
 import dev.filipebezerra.android.nearearthasteroids.util.toEpochMilli
-import java.time.Instant
 import java.time.Instant.now
 
-@BindingAdapter("imageUrl", "bitmap", "placeholder")
-fun ImageView.bindImageUrl(
-    imageUrl: String?,
+@BindingAdapter("pictureOfDay", "bitmap")
+fun ImageView.bindPictureOfDay(
+    pictureOfDay: PictureOfDay?,
     bitmap: Boolean? = false,
-    placeholder: Int? = null,
-) = imageUrl?.let {
+) = pictureOfDay?.apply {
     when (bitmap) {
         true -> Glide.with(context)
             .asBitmap()
-            .load(imageUrl)
+            .load(hdPictureUrl)
             .transition(BitmapTransitionOptions.withCrossFade())
         else -> Glide.with(context)
-            .load(imageUrl)
+            .load(pictureOfDay)
             .transition(DrawableTransitionOptions.withCrossFade())
     }.apply {
-        placeholder?.let {
-            placeholder(it)
-            error(it)
-        }
-    }.run { into(this@bindImageUrl) }
+        placeholder(R.drawable.picture_of_day_placeholder)
+        error(R.drawable.picture_of_day_placeholder)
+        fallback(R.drawable.picture_of_day_placeholder)
+        contentDescription = if (hdPictureUrl == null) context.getString(R.string.picture_of_day_placeholder) else title
+    }.run { into(this@bindPictureOfDay) }
 }
+
+@BindingAdapter("titlePictureOfDay")
+fun CollapsingToolbarLayout.bindTitleOfPictureOfDay(pictureOfDay: PictureOfDay?) =
+    pictureOfDay?.let { picture ->
+        title = when {
+            picture.hdPictureUrl != null -> picture.title
+            else -> context.getString(R.string.picture_of_day_placeholder)
+        }
+    }
 
 @BindingAdapter("asteroidHazardousOrSafe")
 fun ImageView.bindAsteroidHazardousOrSafe(isPotentiallyHazardousAsteroid: Boolean) =
