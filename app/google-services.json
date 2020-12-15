@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "921295929996",
+    "project_id": "near-earth-asteroids-99678",
+    "storage_bucket": "near-earth-asteroids-99678.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921295929996:android:5e4a465e3240c4e0cfb1a9",
+        "android_client_info": {
+          "package_name": "dev.filipebezerra.android.nearearthasteroids"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921295929996-tdu2i6jctafg7jivvjoosjpgto4roae7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.filipebezerra.android.nearearthasteroids",
+            "certificate_hash": "8c2424ba513d384fd4ec9f1dfa6099b0b36e677d"
+          }
+        },
+        {
+          "client_id": "921295929996-il0ainnh7em6rk2p684o8phrt9ianeu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-fmXMGaITEacM6en20xx9Pex5X9Adlsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921295929996-il0ainnh7em6rk2p684o8phrt9ianeu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
