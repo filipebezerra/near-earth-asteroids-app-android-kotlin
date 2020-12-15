@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Near Earth Asteroids"
+rootProject.name = "Near-Earth Asteroids"

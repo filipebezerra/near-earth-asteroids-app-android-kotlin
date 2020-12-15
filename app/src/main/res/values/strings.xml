@@ -1,6 +1,6 @@
 <resources>
     <!-- Global -->
-    <string name="app_name" translatable="false">Near Earth Asteroids</string>
+    <string name="app_name" translatable="false">Near-Earth Asteroids</string>
 
     <!-- Asteroid List screen -->
     <string name="asteroid_image_content_description">Estimated asteroid size</string>
