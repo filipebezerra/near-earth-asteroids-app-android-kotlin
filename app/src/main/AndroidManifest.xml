@@ -33,6 +33,11 @@
             tools:node="remove"
             android:exported="false"
             />
+
+        <meta-data
+            android:name="com.bugsnag.android.API_KEY"
+            android:value="1ee0ceda8deca5cf095088e8bfedaab1"
+            />
     </application>
 
 </manifest>

@@ -3,6 +3,9 @@ package dev.filipebezerra.android.nearearthasteroids
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.work.*
+import com.bugsnag.android.Bugsnag
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dev.filipebezerra.android.nearearthasteroids.repository.AsteroidRepository
 import dev.filipebezerra.android.nearearthasteroids.repository.PictureOfDayRepository
 import dev.filipebezerra.android.nearearthasteroids.work.RefreshAsteroidDataWork
@@ -37,8 +40,22 @@ class NeaApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-        BuildConfig.DEBUG.takeIf { it }?.let { Timber.plant(Timber.DebugTree()) }
+        initializeAnalytics()
         delayedInit()
+    }
+
+    private fun initializeAnalytics() {
+        when (BuildConfig.DEBUG) {
+            true -> {
+                Timber.plant(Timber.DebugTree())
+                FirebaseAnalytics.getInstance(this@NeaApplication)
+                    .setAnalyticsCollectionEnabled(false)
+                FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)
+            }
+            false -> {
+                Bugsnag.start(this@NeaApplication)
+            }
+        }
     }
 
     private fun delayedInit() = applicationScope.launch {
