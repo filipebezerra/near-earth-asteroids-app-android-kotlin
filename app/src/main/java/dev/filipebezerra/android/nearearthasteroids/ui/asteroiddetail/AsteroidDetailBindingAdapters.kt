@@ -13,6 +13,8 @@ import dev.filipebezerra.android.nearearthasteroids.R
 import dev.filipebezerra.android.nearearthasteroids.domain.CloseApproachData
 import dev.filipebezerra.android.nearearthasteroids.domain.EstimatedDiameter
 import dev.filipebezerra.android.nearearthasteroids.domain.PictureOfDay
+import dev.filipebezerra.android.nearearthasteroids.util.LocalDateExt
+import dev.filipebezerra.android.nearearthasteroids.util.LocalDateExt.dateNow
 import dev.filipebezerra.android.nearearthasteroids.util.asIsoLocalDate
 import dev.filipebezerra.android.nearearthasteroids.util.toEpochMilli
 import java.time.Instant.now
@@ -64,7 +66,7 @@ fun TextView.bindCloseApproachDate(closeApproachDataEntity: CloseApproachData?) 
     closeApproachDataEntity?.approachDate?.let { approachDate ->
         getRelativeTimeSpanString(
             approachDate.toEpochMilli(),
-            now().toEpochMilli(),
+            dateNow().toEpochMilli(),
             DAY_IN_MILLIS
         ).let { relativeTime ->
             text = context.getString(

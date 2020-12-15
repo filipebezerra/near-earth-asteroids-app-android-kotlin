@@ -5,9 +5,10 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 object LocalDateExt {
-    fun dateNowAsIsoLocalDate(): String = LocalDate.now().asIsoLocalDate()
+    fun dateNow(): LocalDate = LocalDate.now()
+    fun dateNowAsIsoLocalDate(): String = dateNow().asIsoLocalDate()
 
-    fun oneWeekFromNow(): LocalDate = LocalDate.now().plusWeeks(1)
+    fun oneWeekFromNow(): LocalDate = dateNow().plusWeeks(1)
 }
 
 fun LocalDate.asIsoLocalDate(): String = format(DateTimeFormatter.ISO_LOCAL_DATE)
