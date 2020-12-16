@@ -1,4 +1,4 @@
-package dev.filipebezerra.android.nearearthasteroids.util
+package dev.filipebezerra.android.nearearthasteroids.util.ext
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

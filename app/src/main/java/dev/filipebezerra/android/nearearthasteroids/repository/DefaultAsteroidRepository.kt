@@ -6,9 +6,9 @@ import dev.filipebezerra.android.nearearthasteroids.datasource.remote.NeoWsServi
 import dev.filipebezerra.android.nearearthasteroids.datasource.remote.asDomainModel
 import dev.filipebezerra.android.nearearthasteroids.domain.Asteroid
 import dev.filipebezerra.android.nearearthasteroids.domain.asEntity
-import dev.filipebezerra.android.nearearthasteroids.util.LocalDateExt.dateNowAsIsoLocalDate
-import dev.filipebezerra.android.nearearthasteroids.util.LocalDateExt.oneWeekFromNow
-import dev.filipebezerra.android.nearearthasteroids.util.asIsoLocalDate
+import dev.filipebezerra.android.nearearthasteroids.util.ext.LocalDateExt.dateNowAsIsoLocalDate
+import dev.filipebezerra.android.nearearthasteroids.util.ext.LocalDateExt.oneWeekFromNow
+import dev.filipebezerra.android.nearearthasteroids.util.ext.asIsoLocalDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.LocalDate

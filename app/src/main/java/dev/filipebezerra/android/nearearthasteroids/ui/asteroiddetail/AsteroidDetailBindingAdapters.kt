@@ -13,11 +13,9 @@ import dev.filipebezerra.android.nearearthasteroids.R
 import dev.filipebezerra.android.nearearthasteroids.domain.CloseApproachData
 import dev.filipebezerra.android.nearearthasteroids.domain.EstimatedDiameter
 import dev.filipebezerra.android.nearearthasteroids.domain.PictureOfDay
-import dev.filipebezerra.android.nearearthasteroids.util.LocalDateExt
-import dev.filipebezerra.android.nearearthasteroids.util.LocalDateExt.dateNow
-import dev.filipebezerra.android.nearearthasteroids.util.asIsoLocalDate
-import dev.filipebezerra.android.nearearthasteroids.util.toEpochMilli
-import java.time.Instant.now
+import dev.filipebezerra.android.nearearthasteroids.util.ext.LocalDateExt.dateNow
+import dev.filipebezerra.android.nearearthasteroids.util.ext.asIsoLocalDate
+import dev.filipebezerra.android.nearearthasteroids.util.ext.toEpochMilli
 
 @BindingAdapter("pictureOfDay", "bitmap")
 fun ImageView.bindPictureOfDay(

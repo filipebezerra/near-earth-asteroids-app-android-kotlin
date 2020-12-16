@@ -7,7 +7,7 @@ import dev.filipebezerra.android.nearearthasteroids.domain.Asteroid
 import dev.filipebezerra.android.nearearthasteroids.domain.PictureOfDay
 import dev.filipebezerra.android.nearearthasteroids.repository.AsteroidRepository
 import dev.filipebezerra.android.nearearthasteroids.repository.PictureOfDayRepository
-import dev.filipebezerra.android.nearearthasteroids.util.LocalDateExt.oneWeekFromNow
+import dev.filipebezerra.android.nearearthasteroids.util.ext.LocalDateExt.oneWeekFromNow
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onCompletion

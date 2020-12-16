@@ -6,7 +6,7 @@ import dev.filipebezerra.android.nearearthasteroids.domain.Asteroid
 import dev.filipebezerra.android.nearearthasteroids.domain.CloseApproachData
 import dev.filipebezerra.android.nearearthasteroids.domain.EstimatedDiameter
 import dev.filipebezerra.android.nearearthasteroids.domain.PictureOfDay
-import dev.filipebezerra.android.nearearthasteroids.util.toLocalDate
+import dev.filipebezerra.android.nearearthasteroids.util.ext.toLocalDate
 
 @JsonClass(generateAdapter = true)
 data class NeoFeed(

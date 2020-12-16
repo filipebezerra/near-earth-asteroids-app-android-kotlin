@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import dev.filipebezerra.android.nearearthasteroids.databinding.AsteroidDetailScreenBinding
-import dev.filipebezerra.android.nearearthasteroids.ui.util.ext.getViewModelFactory
+import dev.filipebezerra.android.nearearthasteroids.util.ext.getViewModelFactory
 
 class AsteroidDetailScreen : Fragment() {
 

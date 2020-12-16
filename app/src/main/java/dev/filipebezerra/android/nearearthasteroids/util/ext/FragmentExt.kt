@@ -1,4 +1,4 @@
-package dev.filipebezerra.android.nearearthasteroids.ui.util.ext
+package dev.filipebezerra.android.nearearthasteroids.util.ext
 
 import androidx.fragment.app.Fragment
 import dev.filipebezerra.android.nearearthasteroids.NeaApplication

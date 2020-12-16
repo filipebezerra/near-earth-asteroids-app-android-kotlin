@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dev.filipebezerra.android.nearearthasteroids.databinding.AsteroidListScreenBinding
-import dev.filipebezerra.android.nearearthasteroids.ui.util.ext.getViewModelFactory
+import dev.filipebezerra.android.nearearthasteroids.util.ext.getViewModelFactory
 
 class AsteroidListScreen : Fragment() {
 

@@ -1,7 +1,7 @@
 package dev.filipebezerra.android.nearearthasteroids.datasource.remote
 
 import dev.filipebezerra.android.nearearthasteroids.BuildConfig
-import dev.filipebezerra.android.nearearthasteroids.util.LocalDateExt.dateNowAsIsoLocalDate
+import dev.filipebezerra.android.nearearthasteroids.util.ext.LocalDateExt.dateNowAsIsoLocalDate
 import retrofit2.http.GET
 import retrofit2.http.Query
 
