@@ -4,8 +4,9 @@
     package="dev.filipebezerra.android.nearearthasteroids"
     >
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".NeaApplication"
@@ -36,7 +37,23 @@
 
         <meta-data
             android:name="com.bugsnag.android.API_KEY"
-            android:value="1ee0ceda8deca5cf095088e8bfedaab1"
+            android:value="@string/bugsnag_api_key"
+            />
+
+        <!--
+        https://firebase.google.com/docs/crashlytics/customize-crash-reports?authuser=0&platform=android#enable-reporting
+        -->
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="${crashlyticsEnabled}"
+            />
+
+        <!--
+        https://firebase.google.com/docs/analytics/configure-data-collection?platform=android#disable_data_collection
+        -->
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="${analyticsEnabled}"
             />
     </application>
 

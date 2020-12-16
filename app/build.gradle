@@ -13,17 +13,22 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
+    def nasaApiKey = project.findProperty("nasa_api_key")
+
+    def bugsnagApiKey = project.findProperty("bugsnag_api_key")
+
     defaultConfig {
         applicationId "dev.filipebezerra.android.nearearthasteroids"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "0.0.1"
+        archivesBaseName = 'nea_app'
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resConfigs "en", "pt-rBR", "es"
 
-        buildConfigField("String", "NASA_API_KEY", "\"" + getNasaApiKey() + "\"")
+        buildConfigField("String", "NASA_API_KEY", "\"${nasaApiKey}\"")
 
         javaCompileOptions {
             // https://developer.android.com/studio/build/optimize-your-build#incremental-annotation-processor-support
@@ -33,6 +38,11 @@ android {
                         "room.incremental":"true"]
             }
         }
+
+        manifestPlaceholders << [
+                crashlyticsEnabled: false,
+                analyticsEnabled: false
+        ]
     }
     buildTypes {
         release {
@@ -41,6 +51,12 @@ android {
             // https://developer.android.com/studio/build/optimize-your-build#disable_crunching
             crunchPngs false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders << [
+                    crashlyticsEnabled: true,
+                    analyticsEnabled: true
+            ]
+
+            resValue("string", "bugsnag_api_key", "${bugsnagApiKey}")
         }
     }
     compileOptions {
@@ -155,8 +171,4 @@ dependencies {
     })
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidx_junit_version"
     androidTestImplementation "androidx.room:room-testing:$rootProject.room_version"
-}
-
-def getNasaApiKey() {
-    return project.findProperty("nasa_api_key")
 }

@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.work.*
 import com.bugsnag.android.Bugsnag
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dev.filipebezerra.android.nearearthasteroids.repository.AsteroidRepository
 import dev.filipebezerra.android.nearearthasteroids.repository.PictureOfDayRepository
 import dev.filipebezerra.android.nearearthasteroids.work.RefreshAsteroidDataWork
@@ -14,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import timber.log.Timber.DebugTree
 import java.util.concurrent.TimeUnit.DAYS
 
 class NeaApplication : Application(), Configuration.Provider {
@@ -47,12 +46,10 @@ class NeaApplication : Application(), Configuration.Provider {
     private fun initializeAnalytics() {
         when (BuildConfig.DEBUG) {
             true -> {
-                Timber.plant(Timber.DebugTree())
-                FirebaseAnalytics.getInstance(this@NeaApplication)
-                    .setAnalyticsCollectionEnabled(false)
-                FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false)
+                Timber.plant(DebugTree())
             }
             false -> {
+                Timber.plant(ReleaseTree())
                 Bugsnag.start(this@NeaApplication)
             }
         }
