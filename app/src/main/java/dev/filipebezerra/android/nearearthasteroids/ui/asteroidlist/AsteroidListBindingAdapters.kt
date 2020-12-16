@@ -10,6 +10,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import dev.filipebezerra.android.nearearthasteroids.R
 import dev.filipebezerra.android.nearearthasteroids.domain.Asteroid
 import dev.filipebezerra.android.nearearthasteroids.domain.PictureOfDay
+import dev.filipebezerra.android.nearearthasteroids.util.ext.applyImprovements
 
 @BindingAdapter("asteroidList")
 fun bindAsteroidList(listView: RecyclerView, asteroids: List<Asteroid>?) =
@@ -32,7 +33,9 @@ fun ImageView.bindPictureOfDay(
         placeholder(R.drawable.picture_of_day_placeholder)
         error(R.drawable.picture_of_day_placeholder)
         fallback(R.drawable.picture_of_day_placeholder)
-        contentDescription = if (hdPictureUrl == null) context.getString(R.string.picture_of_day_placeholder) else title
+        contentDescription = if (hdPictureUrl != null) title
+            else context.getString(R.string.picture_of_day_placeholder)
+        applyImprovements(date)
     }.run { into(this@bindPictureOfDay) }
 }
 

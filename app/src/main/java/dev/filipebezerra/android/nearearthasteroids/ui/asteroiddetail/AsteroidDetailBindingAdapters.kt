@@ -11,6 +11,7 @@ import dev.filipebezerra.android.nearearthasteroids.R
 import dev.filipebezerra.android.nearearthasteroids.domain.CloseApproachData
 import dev.filipebezerra.android.nearearthasteroids.domain.EstimatedDiameter
 import dev.filipebezerra.android.nearearthasteroids.util.ext.LocalDateExt.dateNow
+import dev.filipebezerra.android.nearearthasteroids.util.ext.applyImprovements
 import dev.filipebezerra.android.nearearthasteroids.util.ext.asIsoLocalDate
 import dev.filipebezerra.android.nearearthasteroids.util.ext.toEpochMilli
 
@@ -24,6 +25,7 @@ fun ImageView.bindAsteroidHazardousOrSafe(isPotentiallyHazardousAsteroid: Boolea
             }
         )
         .transition(DrawableTransitionOptions.withCrossFade())
+        .apply { applyImprovements() }
         .into(this)
 
 @BindingAdapter("closeApproachDate")
