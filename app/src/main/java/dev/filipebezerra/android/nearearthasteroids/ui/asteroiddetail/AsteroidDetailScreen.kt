@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import dev.filipebezerra.android.nearearthasteroids.databinding.AsteroidDetailScreenBinding
 import dev.filipebezerra.android.nearearthasteroids.util.ext.getViewModelFactory
+import dev.filipebezerra.android.nearearthasteroids.util.setNavigationContentDescriptionUsingPreviousDestinationLabel
 
 class AsteroidDetailScreen : Fragment() {
 
@@ -48,9 +49,10 @@ class AsteroidDetailScreen : Fragment() {
         }
         .root
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         asteroidDetailViewModel.initialize(arguments.asteroid)
         viewBinding.lifecycleOwner = viewLifecycleOwner
+        viewBinding.toolbar.setNavigationContentDescriptionUsingPreviousDestinationLabel()
     }
 }

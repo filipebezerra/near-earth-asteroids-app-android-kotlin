@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Global -->
+    <string name="navigation_content_description">Navegar de regreso a %s</string>
+    <string name="unlabelled_destination">pantalla anterior</string>
+    <string name="asteroid_list">Lista de asteroides</string>
+
     <!-- Asteroid List screen -->
     <string name="asteroid_image_content_description">Tamaño estimado del asteroide</string>
-    <string name="share_button_content_description">Compartir Asteroide</string>
-    <string name="more_info_button_content_description">Ver más información sobre el asteroide</string>
+    <string name="share_asteroid_content_description">Compartir %s</string>
+    <string name="read_more_about_asteroid_content_description">Leer más sobre el asteroide %s</string>
     <string name="error_loading_image_content_description">Error al cargar datos de asteroides desde la imagen de Internet</string>
     <string name="asteroid_name_format">Asteroide %s</string>
     <string name="retry_button">Rever</string>

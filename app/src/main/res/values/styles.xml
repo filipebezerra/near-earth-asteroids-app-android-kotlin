@@ -37,22 +37,25 @@
     <style name="Widget.NearEarthAsteroids.AsteroidInfoTextView.Label" parent="Widget.MaterialComponents.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/normal_spacing</item>
+        <item name="android:layout_marginTop">@dimen/smaller_spacing</item>
         <item name="android:textAppearance">?attr/textAppearanceBody1</item>
         <item name="android:textColor">?attr/colorAccent</item>
         <item name="android:textIsSelectable">true</item>
+        <item name="android:minHeight">@dimen/min_size_control</item>
+        <item name="android:gravity">center</item>
     </style>
 
-    <style name="Widget.NearEarthAsteroids.AsteroidInfoTextView" parent="Widget.MaterialComponents.TextView">>
+    <style name="Widget.NearEarthAsteroids.AsteroidInfoTextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:gravity">end</item>
+        <item name="android:gravity">end|center_vertical</item>
         <item name="android:lineSpacingExtra">@dimen/default_line_spacing</item>
         <item name="android:maxLines">1</item>
         <item name="android:paddingStart">@dimen/normal_spacing</item>
         <item name="android:textAppearance">?attr/textAppearanceBody2</item>
         <item name="android:textIsSelectable">true</item>
+        <item name="android:minHeight">@dimen/min_size_control</item>
     </style>
     
     <style name="Widget.NearEarthAsteroids.AsteroidInfoTextView.OrbitInfo">

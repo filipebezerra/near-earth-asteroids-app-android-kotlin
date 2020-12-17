@@ -1,11 +1,14 @@
 <resources>
     <!-- Global -->
     <string name="app_name" translatable="false">Near-Earth Asteroids</string>
+    <string name="navigation_content_description">Navigate back to %s</string>
+    <string name="unlabelled_destination">previous screen</string>
+    <string name="asteroid_list">Asteroid list</string>
 
     <!-- Asteroid List screen -->
     <string name="asteroid_image_content_description">Estimated asteroid size</string>
-    <string name="share_button_content_description">Share Asteroid</string>
-    <string name="more_info_button_content_description">See more info about the asteroid</string>
+    <string name="share_asteroid_content_description">Share %s</string>
+    <string name="read_more_about_asteroid_content_description">Read more about the asteroid %s</string>
     <string name="error_loading_image_content_description">
         Error loading asteroids data from the internet image
     </string>

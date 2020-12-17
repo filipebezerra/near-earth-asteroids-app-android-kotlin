@@ -57,10 +57,11 @@
                     tools:src="@tools:sample/backgrounds/scenic"
                     />
 
-                <androidx.appcompat.widget.Toolbar
+                <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="wrap_content"
+                    android:minWidth="?attr/actionBarSize"
                     android:background="@android:color/transparent"
                     app:contentInsetStartWithNavigation="0dp"
                     app:layout_collapseMode="pin"
@@ -89,7 +90,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/small_spacing"
-                    android:gravity="center_horizontal"
+                    android:minHeight="@dimen/min_size_control"
+                    android:gravity="center"
                     android:text="@{@string/asteroid_name_format(viewModel.asteroid.name)}"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:textIsSelectable="true"

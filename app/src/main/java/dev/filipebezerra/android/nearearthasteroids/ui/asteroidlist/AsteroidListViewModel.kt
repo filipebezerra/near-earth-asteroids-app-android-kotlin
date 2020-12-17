@@ -33,8 +33,7 @@ class AsteroidListViewModel(
             }
         }
         .catch { error ->
-            // TODO: Log to Bugsnag/Firebase Crashlytics
-            // TODO: Give visual feedback to user
+            // TODO: Give visual feedback to user when fail loading asteroids
         }
         .asLiveData()
 
@@ -49,8 +48,7 @@ class AsteroidListViewModel(
             }
         }
         .catch { error ->
-            // TODO: Log to Bugsnag/Firebase Crashlytics
-            // TODO: Give visual feedback to user
+            // TODO: Give visual feedback to user when fail loading picture of day
         }
         .asLiveData()
 
