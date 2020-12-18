@@ -112,6 +112,7 @@
                 <TextView
                     android:id="@+id/close_approach_date_text"
                     style="@style/Widget.NearEarthAsteroids.AsteroidInfoTextView"
+                    android:fontFamily="@font/raleway_medium"
                     app:layout_constraintBaseline_toBaselineOf="@+id/close_approach_date_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/close_approach_date_label"

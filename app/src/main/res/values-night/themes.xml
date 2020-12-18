@@ -15,5 +15,8 @@
         <!-- Customize your theme here. -->
         <item name="colorOnSurface">@color/black_87pc</item>
         <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
+
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
     </style>
 </resources>
