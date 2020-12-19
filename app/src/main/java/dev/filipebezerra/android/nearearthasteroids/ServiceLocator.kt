@@ -14,6 +14,7 @@ import dev.filipebezerra.android.nearearthasteroids.repository.AsteroidRepositor
 import dev.filipebezerra.android.nearearthasteroids.repository.DefaultAsteroidRepository
 import dev.filipebezerra.android.nearearthasteroids.repository.DefaultPictureOfDayRepository
 import dev.filipebezerra.android.nearearthasteroids.repository.PictureOfDayRepository
+import dev.filipebezerra.android.nearearthasteroids.util.interceptors.ApiKeyInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -40,6 +41,7 @@ object ServiceLocator {
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
+            .addInterceptor(ApiKeyInterceptor())
         // TODO Improve networking with Stetho for debugging
         // .addNetworkInterceptor()
          .readTimeout(30, SECONDS)
