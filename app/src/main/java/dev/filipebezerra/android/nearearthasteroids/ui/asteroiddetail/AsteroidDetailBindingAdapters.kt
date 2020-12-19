@@ -1,7 +1,6 @@
 package dev.filipebezerra.android.nearearthasteroids.ui.asteroiddetail
 
-import android.text.format.DateUtils.DAY_IN_MILLIS
-import android.text.format.DateUtils.getRelativeTimeSpanString
+import android.text.format.DateUtils.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -34,7 +33,8 @@ fun TextView.bindCloseApproachDate(closeApproachDataEntity: CloseApproachData?) 
         getRelativeTimeSpanString(
             approachDate.toEpochMilli(),
             dateNow().toEpochMilli(),
-            DAY_IN_MILLIS
+            DAY_IN_MILLIS,
+            FORMAT_NO_YEAR + FORMAT_ABBREV_MONTH,
         ).let { relativeTime ->
             text = context.getString(
                 R.string.close_approach_date_format,

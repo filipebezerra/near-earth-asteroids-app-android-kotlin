@@ -120,12 +120,11 @@
                 <TextView
                     android:id="@+id/close_approach_date_text"
                     style="@style/Widget.NearEarthAsteroids.AsteroidInfoTextView"
-                    android:fontFamily="@font/raleway_medium"
                     app:layout_constraintBaseline_toBaselineOf="@+id/close_approach_date_label"
                     app:layout_constraintEnd_toStartOf="@+id/guideline"
                     app:layout_constraintStart_toEndOf="@+id/close_approach_date_label"
                     bind:closeApproachDate="@{viewModel.asteroid.closeApproachData}"
-                    tools:text="Hoje (2020-11-24)"
+                    tools:text="25 de dez de 2020 (2020-11-24)"
                     />
 
                 <TextView
