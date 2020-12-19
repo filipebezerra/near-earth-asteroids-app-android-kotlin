@@ -160,6 +160,14 @@ dependencies {
     })
     kapt "com.github.bumptech.glide:compiler:$rootProject.glide_version"
 
+    // https://github.com/facebook/SoLoader/releases
+    debugImplementation 'com.facebook.soloader:soloader:0.9.0'
+
+    // https://github.com/facebook/flipper/blob/master/desktop/static/CHANGELOG.md
+    debugImplementation "com.facebook.flipper:flipper:$rootProject.flipper_version"
+    debugImplementation "com.facebook.flipper:flipper-network-plugin:$rootProject.flipper_version"
+    releaseImplementation "com.facebook.flipper:flipper-noop:$rootProject.flipper_version"
+
     // https://github.com/bugsnag/bugsnag-android/blob/master/CHANGELOG.md
     implementation "com.bugsnag:bugsnag-android:5.4.0"
 

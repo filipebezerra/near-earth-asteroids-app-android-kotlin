@@ -2,6 +2,8 @@ package dev.filipebezerra.android.nearearthasteroids
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
+import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
+import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dev.filipebezerra.android.nearearthasteroids.database.AsteroidDao
@@ -17,6 +19,7 @@ import dev.filipebezerra.android.nearearthasteroids.repository.PictureOfDayRepos
 import dev.filipebezerra.android.nearearthasteroids.util.interceptors.ApiKeyInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit.SECONDS
@@ -37,15 +40,11 @@ object ServiceLocator {
 
     private val okHttpClientBuilder: OkHttpClient.Builder by lazy {
         OkHttpClient.Builder()
-            // TODO Improve networking with passing API KEY via interceptor
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
+            .addInterceptor(HttpLoggingInterceptor().apply { level = BODY })
             .addInterceptor(ApiKeyInterceptor())
-        // TODO Improve networking with Stetho for debugging
-        // .addNetworkInterceptor()
-         .readTimeout(30, SECONDS)
-         .callTimeout(60, SECONDS)
+            .addNetworkInterceptor(FlipperOkhttpInterceptor(networkFlipperPlugin))
+            .readTimeout(30, SECONDS)
+            .callTimeout(60, SECONDS)
         // TODO Improve networking with caching
         // .cache()
         // TODO Improve networking with retry policy
@@ -58,6 +57,8 @@ object ServiceLocator {
             .addConverterFactory(MoshiConverterFactory.create(moshiBuilder.build()))
             .client(okHttpClientBuilder.build())
     }
+
+    val networkFlipperPlugin by lazy { NetworkFlipperPlugin() }
 
     @Volatile
     var asteroidRepository: AsteroidRepository? = null

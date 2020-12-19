@@ -4,6 +4,13 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.work.*
 import com.bugsnag.android.Bugsnag
+import com.facebook.flipper.android.AndroidFlipperClient
+import com.facebook.flipper.android.utils.FlipperUtils
+import com.facebook.flipper.plugins.databases.DatabasesFlipperPlugin
+import com.facebook.flipper.plugins.inspector.DescriptorMapping
+import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
+import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
+import com.facebook.soloader.SoLoader
 import dev.filipebezerra.android.nearearthasteroids.repository.AsteroidRepository
 import dev.filipebezerra.android.nearearthasteroids.repository.PictureOfDayRepository
 import dev.filipebezerra.android.nearearthasteroids.work.RefreshAsteroidDataWork
@@ -14,6 +21,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 import java.util.concurrent.TimeUnit.DAYS
+
 
 class NeaApplication : Application(), Configuration.Provider {
 
@@ -41,6 +49,22 @@ class NeaApplication : Application(), Configuration.Provider {
         super.onCreate()
         initializeAnalytics()
         delayedInit()
+        initializeDebugging()
+    }
+
+    private fun initializeDebugging() {
+        SoLoader.init(this, false)
+
+        if (BuildConfig.DEBUG && FlipperUtils.shouldEnableFlipper(this)) {
+            val client = AndroidFlipperClient.getInstance(this)
+            // https://fbflipper.com/docs/setup/layout-plugin
+            client.addPlugin(InspectorFlipperPlugin(this, DescriptorMapping.withDefaults()))
+            // https://fbflipper.com/docs/setup/network-plugin
+            client.addPlugin(ServiceLocator.networkFlipperPlugin)
+            // https://fbflipper.com/docs/setup/databases-plugin
+            client.addPlugin(DatabasesFlipperPlugin(this));
+            client.start()
+        }
     }
 
     private fun initializeAnalytics() {

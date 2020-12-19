@@ -47,6 +47,7 @@ ext {
     timber_version = "4.7.1"
     shimmer_version = "0.5.0"
     glide_version = "4.11.0"
+    flipper_version = "0.69.0"
 
     // Testing
     junit_version = "4.13.1"
