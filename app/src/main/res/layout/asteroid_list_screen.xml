@@ -92,6 +92,7 @@
                 android:scrollbars="none"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 bind:asteroidList="@{viewModel.asteroids}"
+                bind:initialAsteroidDataState="@{viewModel.initialAsteroidDataState}"
                 tools:itemCount="4"
                 tools:listitem="@layout/asteroid_list_item"
                 />

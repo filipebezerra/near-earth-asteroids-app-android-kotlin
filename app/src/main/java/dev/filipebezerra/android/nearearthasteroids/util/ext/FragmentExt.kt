@@ -9,6 +9,7 @@ fun Fragment.getViewModelFactory(): ViewModelFactory =
         ViewModelFactory(
             asteroidRepository,
             pictureOfDayRepository,
-        this@getViewModelFactory,
+            workManager,
+            this@getViewModelFactory,
         )
     }

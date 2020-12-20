@@ -11,9 +11,11 @@
     <string name="read_more_about_asteroid_content_description">Leia mais sobre o asteróide %s</string>
     <string name="error_loading_image_content_description">Erro ao carregar dados de asteróides da imagem da Internet</string>
     <string name="asteroid_name_format">Asteróide %s</string>
-    <string name="retry_button">Tentar novamente</string>
-    <string name="help_text_offline_text">Sua rede não está disponível. Verifique seus dados ou conexão wi-fi.</string>
-    <string name="offline_text">Desconectado</string>
+    <string name="offline_text">Houston, nós temos um problema</string>
+    <string name="help_text_offline_text">
+        Sua rede parece estar indisponível, não foi possível carregar os dados da Internet.
+        Verifique seus dados ou conexão wi-fi. Tentaremos novamente em alguns segundos!
+    </string>
 
     <!-- Asteroid Detail screen -->
     <string name="asteroid_detail_image_content_description">Imagem de asteróide sendo perigoso ou seguro</string>

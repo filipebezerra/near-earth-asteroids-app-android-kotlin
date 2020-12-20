@@ -1,11 +1,19 @@
 package dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist
 
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.WorkInfo
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import dev.filipebezerra.android.nearearthasteroids.R
 import dev.filipebezerra.android.nearearthasteroids.domain.Asteroid
@@ -48,34 +56,41 @@ fun CollapsingToolbarLayout.bindTitleOfPictureOfDay(pictureOfDay: PictureOfDay?)
         }
     }
 
-/*
-@BindingAdapter("apiCallStatus")
-fun bindApiCallStatus(view: View, apiCallStatus: ApiCallStatus) {
-    when (apiCallStatus) {
-        ApiCallStatus.LOADING -> when (view.id) {
-            R.id.asteroid_list_placeholder -> {
-                view.visibility = View.VISIBLE
-                (view as ShimmerFrameLayout).startShimmer()
+@BindingAdapter("initialAsteroidDataState")
+fun View.bindInitialAsteroidDataState(initialAsteroidDataState: WorkInfo.State?) =
+    initialAsteroidDataState?.let {
+        when (initialAsteroidDataState) {
+            WorkInfo.State.SUCCEEDED -> when (id) {
+                R.id.asteroid_list_placeholder -> {
+                    visibility = GONE
+                    (this as ShimmerFrameLayout).stopShimmer()
+                }
+                R.id.asteroid_list -> visibility = VISIBLE
+                R.id.asteroid_list_error -> {
+                    visibility = GONE
+                    (((parent as FrameLayout).layoutParams) as CoordinatorLayout.LayoutParams)
+                        .behavior = AppBarLayout.ScrollingViewBehavior()
+                }
             }
-            R.id.asteroid_list,
-            R.id.asteroid_list_error -> view.visibility = View.GONE
-        }
-        ApiCallStatus.SUCCESS -> when (view.id) {
-            R.id.asteroid_list_placeholder -> {
-                view.visibility = View.GONE
-                (view as ShimmerFrameLayout).stopShimmer()
+            WorkInfo.State.FAILED -> when (id) {
+                R.id.asteroid_list_placeholder -> {
+                    visibility = GONE
+                    (this as ShimmerFrameLayout).stopShimmer()
+                }
+                R.id.asteroid_list -> visibility = GONE
+                R.id.asteroid_list_error -> {
+                    visibility = VISIBLE
+                    (((parent as FrameLayout).layoutParams) as CoordinatorLayout.LayoutParams)
+                        .behavior = null
+                }
             }
-            R.id.asteroid_list -> view.visibility = View.VISIBLE
-            R.id.asteroid_list_error -> view.visibility = View.GONE
-        }
-        ApiCallStatus.ERROR -> when (view.id) {
-            R.id.asteroid_list_placeholder -> {
-                view.visibility = View.GONE
-                (view as ShimmerFrameLayout).stopShimmer()
+            else -> when (id) {
+                R.id.asteroid_list_placeholder -> {
+                    visibility = VISIBLE
+                    (this as ShimmerFrameLayout).startShimmer()
+                }
+                R.id.asteroid_list,
+                R.id.asteroid_list_error -> visibility = GONE
             }
-            R.id.asteroid_list -> view.visibility = View.GONE
-            R.id.asteroid_list_error -> view.visibility = View.VISIBLE
         }
-    }
 }
- */

@@ -2,6 +2,7 @@ package dev.filipebezerra.android.nearearthasteroids
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
+import androidx.work.WorkManager
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.squareup.moshi.Moshi
@@ -45,10 +46,7 @@ object ServiceLocator {
             .addNetworkInterceptor(FlipperOkhttpInterceptor(networkFlipperPlugin))
             .readTimeout(30, SECONDS)
             .callTimeout(60, SECONDS)
-        // TODO Improve networking with caching
-        // .cache()
-        // TODO Improve networking with retry policy
-        // .retryOnConnectionFailure()
+            .retryOnConnectionFailure(true)
     }
 
     private val retrofitBuilder: Retrofit.Builder by lazy {
@@ -75,6 +73,14 @@ object ServiceLocator {
     @Volatile
     var apodWsService: ApodWsService? = null
         @VisibleForTesting set
+
+    @Volatile
+    var workManager: WorkManager? = null
+        @VisibleForTesting set
+
+    fun provideWorkManager(context: Context): WorkManager = synchronized(lock) {
+        workManager ?: WorkManager.getInstance(context.applicationContext)
+    }
 
     fun provideAsteroidRepository(context: Context): AsteroidRepository = synchronized(lock) {
         asteroidRepository ?: createAsteroidRepository(context)

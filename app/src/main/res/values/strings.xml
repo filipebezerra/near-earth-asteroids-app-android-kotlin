@@ -13,11 +13,11 @@
         Error loading asteroids data from the internet image
     </string>
     <string name="asteroid_name_format">Asteroid %s</string>
-    <string name="retry_button">Retry</string>
+    <string name="offline_text">Houston, we have a problem</string>
     <string name="help_text_offline_text">
-        Your network is unavailable. Check your data or wifi connection.
+        Your network seems to be unavailable, we couldn\'t load data from the internet.
+        Check your data or wifi connection. We\'ll retry in a few seconds!
     </string>
-    <string name="offline_text">Offline</string>
     <string name="picture_of_day_placeholder" translatable="false">Messier Craters in Stereo</string>
 
     <!-- Asteroid Detail screen -->

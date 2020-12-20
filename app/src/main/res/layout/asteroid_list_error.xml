@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     >
 
     <data>
@@ -15,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/large_spacing"
+        bind:initialAsteroidDataState="@{viewModel.initialAsteroidDataState}"
         >
 
         <ImageView
@@ -31,13 +33,14 @@
 
         <TextView
             android:id="@+id/offline_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/normal_spacing"
             android:text="@string/offline_text"
             android:textAppearance="?attr/textAppearanceHeadline5"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/no_network_image"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/no_network_image"
             />
 
@@ -50,20 +53,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/offline_text"
             app:layout_constraintTop_toBottomOf="@+id/offline_text"
-            />
-
-        <Button
-            android:id="@+id/retry_button"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.retryLoadAsteroidList()}"
-            android:text="@string/retry_button"
-            android:textAllCaps="true"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/help_text_offline_text"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

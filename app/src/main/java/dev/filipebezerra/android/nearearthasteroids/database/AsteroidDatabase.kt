@@ -6,12 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import androidx.work.OneTimeWorkRequest
+import androidx.work.BackoffPolicy
 import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
+import dev.filipebezerra.android.nearearthasteroids.ServiceLocator
 import dev.filipebezerra.android.nearearthasteroids.work.RefreshAsteroidDataWork
-import dev.filipebezerra.android.nearearthasteroids.work.RefreshAsteroidDataWork.Companion.REFRESH_ASTEROID_DATA_WORK
+import dev.filipebezerra.android.nearearthasteroids.work.RefreshAsteroidDataWork.Companion.GET_INITIAL_ASTEROID_DATA_WORK
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 /**
  * The Room database for this app that contains the [AsteroidEntity]s.
@@ -44,10 +45,12 @@ abstract class AsteroidDatabase : RoomDatabase() {
                 super.onCreate(db)
                 Timber.i("Database created. Scheduling one time work to refresh Asteroid data immediately")
                 OneTimeWorkRequestBuilder<RefreshAsteroidDataWork>()
-                    .addTag("OneTime-$REFRESH_ASTEROID_DATA_WORK")
+                    // For initial data loading our backoff delay will be 30 Secs EXPONENTIAL (60, 90, 120 ...)
+                    .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 30, TimeUnit.SECONDS)
+                    .addTag(GET_INITIAL_ASTEROID_DATA_WORK)
                     .build()
                     .let { workRequest ->
-                        WorkManager.getInstance(context.applicationContext).enqueue(workRequest)
+                        ServiceLocator.provideWorkManager(context).enqueue(workRequest)
                     }
             }
         }).build()

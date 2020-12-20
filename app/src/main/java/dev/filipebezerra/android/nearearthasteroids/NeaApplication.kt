@@ -9,11 +9,11 @@ import com.facebook.flipper.android.utils.FlipperUtils
 import com.facebook.flipper.plugins.databases.DatabasesFlipperPlugin
 import com.facebook.flipper.plugins.inspector.DescriptorMapping
 import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
-import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.facebook.soloader.SoLoader
 import dev.filipebezerra.android.nearearthasteroids.repository.AsteroidRepository
 import dev.filipebezerra.android.nearearthasteroids.repository.PictureOfDayRepository
 import dev.filipebezerra.android.nearearthasteroids.work.RefreshAsteroidDataWork
+import dev.filipebezerra.android.nearearthasteroids.work.RefreshAsteroidDataWork.Companion.RECURRING_REFRESH_ASTEROID_DATA_WORK
 import dev.filipebezerra.android.nearearthasteroids.work.RefreshAsteroidDataWork.Companion.REFRESH_ASTEROID_DATA_WORK
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,6 @@ import timber.log.Timber
 import timber.log.Timber.DebugTree
 import java.util.concurrent.TimeUnit.DAYS
 
-
 class NeaApplication : Application(), Configuration.Provider {
 
     val asteroidRepository: AsteroidRepository
@@ -30,6 +29,9 @@ class NeaApplication : Application(), Configuration.Provider {
 
     val pictureOfDayRepository: PictureOfDayRepository
         get() = ServiceLocator.providePictureOfTheDayRepository()
+
+    val workManager: WorkManager
+        get() = ServiceLocator.provideWorkManager(this)
 
     private val applicationScope = CoroutineScope(Dispatchers.Default)
 
@@ -98,12 +100,12 @@ class NeaApplication : Application(), Configuration.Provider {
             .let { constraints ->
                 PeriodicWorkRequestBuilder<RefreshAsteroidDataWork>(1, DAYS)
                     .setConstraints(constraints)
-                    .addTag("Periodic-$REFRESH_ASTEROID_DATA_WORK")
+                    .addTag(RECURRING_REFRESH_ASTEROID_DATA_WORK)
                     .build()
             }
             .let { workRequest ->
                 // https://developer.android.com/topic/libraries/architecture/workmanager/how-to/define-work#schedule_periodic_work
-                WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+                workManager.enqueueUniquePeriodicWork(
                     REFRESH_ASTEROID_DATA_WORK,
                     ExistingPeriodicWorkPolicy.KEEP,
                     workRequest
