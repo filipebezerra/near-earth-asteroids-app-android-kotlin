@@ -6,6 +6,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
     id 'com.bugsnag.android.gradle'
 }
 
@@ -40,8 +41,9 @@ android {
         }
 
         manifestPlaceholders << [
-                crashlyticsEnabled: false,
-                analyticsEnabled: false
+                firebaseCrashlyticsEnabled: false,
+                firebaseAnalyticsEnabled: false,
+                firebasePerformanceEnabled: false
         ]
     }
     buildTypes {
@@ -52,8 +54,9 @@ android {
             crunchPngs false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders << [
-                    crashlyticsEnabled: true,
-                    analyticsEnabled: true
+                    firebaseCrashlyticsEnabled: true,
+                    firebaseAnalyticsEnabled: true,
+                    firebasePerformanceEnabled: true
             ]
 
             resValue("string", "bugsnag_api_key", "${bugsnagApiKey}")
@@ -129,6 +132,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.1.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-perf-ktx'
 
     // Third-party
     // https://github.com/square/retrofit/blob/master/CHANGELOG.md

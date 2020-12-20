@@ -1,5 +1,6 @@
 package dev.filipebezerra.android.nearearthasteroids.repository
 
+import com.google.firebase.perf.metrics.AddTrace
 import dev.filipebezerra.android.nearearthasteroids.datasource.remote.ApodWsService
 import dev.filipebezerra.android.nearearthasteroids.datasource.remote.asDomainModel
 import dev.filipebezerra.android.nearearthasteroids.domain.PictureOfDay
@@ -11,6 +12,7 @@ class DefaultPictureOfDayRepository(
     private val apodWsService: ApodWsService
 ) : PictureOfDayRepository, BaseDefaultRepository() {
 
+    @AddTrace(name = "getPictureOfTheDayTrace")
     @ExperimentalCoroutinesApi
     override fun getPictureOfTheDay(): Flow<PictureOfDay> = flow {
         val pictureOfTheDay = logBeforeCall("getting Picture of The Day from APOD API")

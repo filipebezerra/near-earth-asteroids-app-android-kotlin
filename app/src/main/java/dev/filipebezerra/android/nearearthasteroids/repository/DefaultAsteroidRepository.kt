@@ -1,5 +1,6 @@
 package dev.filipebezerra.android.nearearthasteroids.repository
 
+import com.google.firebase.perf.metrics.AddTrace
 import dev.filipebezerra.android.nearearthasteroids.database.AsteroidDao
 import dev.filipebezerra.android.nearearthasteroids.database.asDomainModel
 import dev.filipebezerra.android.nearearthasteroids.datasource.remote.NeoWsService
@@ -21,6 +22,7 @@ class DefaultAsteroidRepository(
     private val neoWsService: NeoWsService,
 ) : AsteroidRepository, BaseDefaultRepository() {
 
+    @AddTrace(name = "refreshAsteroidsTrace")
     override suspend fun refreshAsteroids() {
         logBeforeCall("refreshing Near Earth objects from NEO API")
             .let { startTimeGettingObjectsFromRemote ->
@@ -43,6 +45,7 @@ class DefaultAsteroidRepository(
     ): Flow<List<Asteroid>> =
         asteroidDao.observeAsteroids(fromDate, toDate).map { it.asDomainModel() }
 
+    @AddTrace(name = "saveAsteroidsTrace")
     override suspend fun saveAsteroids(asteroids: List<Asteroid>): List<Long> =
         logBeforeCall("saving Near Earth objects to local Data Source").let { startTime ->
             asteroidDao.insertAll(asteroids.asEntity()).also {

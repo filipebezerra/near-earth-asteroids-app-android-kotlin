@@ -34,18 +34,16 @@
             tools:node="remove"
             android:exported="false"
             />
-
         <meta-data
             android:name="com.bugsnag.android.API_KEY"
             android:value="@string/bugsnag_api_key"
             />
-
         <!--
         https://firebase.google.com/docs/crashlytics/customize-crash-reports?authuser=0&platform=android#enable-reporting
         -->
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
-            android:value="${crashlyticsEnabled}"
+            android:value="${firebaseCrashlyticsEnabled}"
             />
 
         <!--
@@ -53,7 +51,18 @@
         -->
         <meta-data
             android:name="firebase_analytics_collection_enabled"
-            android:value="${analyticsEnabled}"
+            android:value="${firebaseAnalyticsEnabled}"
+            />
+        <!--
+        https://firebase.google.com/docs/perf-mon/disable-sdk?platform=android#disable-library
+        -->
+        <meta-data
+            android:name="firebase_performance_collection_enabled"
+            android:value="${firebasePerformanceEnabled}"
+            />
+        <meta-data
+            android:name="firebase_performance_logcat_enabled"
+            android:value="true"
             />
         <meta-data
             android:name="preloaded_fonts"

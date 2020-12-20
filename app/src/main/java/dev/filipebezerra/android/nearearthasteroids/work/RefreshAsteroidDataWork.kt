@@ -3,6 +3,7 @@ package dev.filipebezerra.android.nearearthasteroids.work
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.google.firebase.perf.metrics.AddTrace
 import dev.filipebezerra.android.nearearthasteroids.NeaApplication
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -22,6 +23,7 @@ class RefreshAsteroidDataWork(
         postfix = " }"
     ).let { tags -> "[ id=$id, $tags ]" }
 
+    @AddTrace(name = "doWorkTrace")
     override suspend fun doWork(): Result =
         withContext(Dispatchers.IO) {
             try {
@@ -36,7 +38,6 @@ class RefreshAsteroidDataWork(
                     error,
                     "Failed to complete refresh Asteroid work. Signalling to retry  $workId"
                 )
-                // TODO Log to Crashlytics/Bugsnag
                 Result.retry()
             }
         }
