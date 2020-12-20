@@ -83,6 +83,7 @@ android {
 
 dependencies {
     // Kotlin
+    //noinspection DifferentStdlibGradleVersion
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // Android
