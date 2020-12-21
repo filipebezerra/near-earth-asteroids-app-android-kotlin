@@ -17,6 +17,10 @@
         Su red parece no estar disponible, no pudimos cargar datos de Internet.
         Comprueba tu conexión de datos o wifi. ¡Intentaremos de nuevo en unos segundos!
     </string>
+    <string name="share_asteroid_text">
+        Descubrí que el asteroide %s pasa cerca de la Tierra y probablemente también te gustará
+        comprobarlo usando la aplicación Near-Earth Asteroids.
+    </string>
 
     <!-- Asteroid Detail screen -->
     <string name="asteroid_detail_image_content_description">Imagen de asteroide siendo peligroso o seguro</string>

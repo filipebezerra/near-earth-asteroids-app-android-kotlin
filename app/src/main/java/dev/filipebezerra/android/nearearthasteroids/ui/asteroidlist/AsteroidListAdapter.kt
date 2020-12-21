@@ -1,38 +1,32 @@
 package dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.filipebezerra.android.nearearthasteroids.databinding.AsteroidListItemBinding
 import dev.filipebezerra.android.nearearthasteroids.domain.Asteroid
-import dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidListScreenDirections.Companion.actionAsteroidListToAsteroidDetail as toAsteroidDetail
 
-class AsteroidListAdapter : ListAdapter<Asteroid, AsteroidItemViewHolder>(AsteroidItemDiff()) {
+class AsteroidListAdapter(
+    private val itemListener: AsteroidItemListener
+) : ListAdapter<Asteroid, AsteroidItemViewHolder>(AsteroidItemDiff()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         AsteroidItemViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: AsteroidItemViewHolder, position: Int) =
-        holder.bindTo(getItem(position))
+        holder.bindTo(getItem(position), itemListener)
 }
 
 class AsteroidItemViewHolder private constructor(
     private val itemBinding: AsteroidListItemBinding
 ) : RecyclerView.ViewHolder(itemBinding.root) {
 
-    init {
-        itemBinding.setClickListener { view -> itemBinding.asteroid?.let { asteroid ->
-            navigateToAsteroidDetail(view, asteroid)
-        }}
-    }
-
-    private fun navigateToAsteroidDetail(view: View, asteroidEntity: Asteroid) =
-        view.findNavController().navigate(toAsteroidDetail(asteroidEntity))
-
-    fun bindTo(item: Asteroid) = with(itemBinding) {
+    fun bindTo(
+        item: Asteroid,
+        itemListener: AsteroidItemListener
+    ) = with(itemBinding) {
+        asteroidItemListener = itemListener
         asteroid = item
         executePendingBindings()
     }
@@ -53,4 +47,12 @@ class AsteroidItemDiff : DiffUtil.ItemCallback<Asteroid>() {
 
     override fun areContentsTheSame(oldItem: Asteroid, newItem: Asteroid) =
         oldItem == newItem
+}
+
+interface AsteroidItemListener {
+    fun onItemClicked(asteroid: Asteroid)
+
+    fun onShareClicked(asteroid: Asteroid)
+
+    fun onMoreInfoClicked(asteroid: Asteroid)
 }

@@ -16,6 +16,10 @@
         Sua rede parece estar indisponível, não foi possível carregar os dados da Internet.
         Verifique seus dados ou conexão wi-fi. Tentaremos novamente em alguns segundos!
     </string>
+    <string name="share_asteroid_text">
+        Eu descobri que o asteróide %s está passando perto da Terra e você provavelmente gostaria
+        de dar uma olhada também usando o aplicativo Near-Earth Asteroids.
+    </string>
 
     <!-- Asteroid Detail screen -->
     <string name="asteroid_detail_image_content_description">Imagem de asteróide sendo perigoso ou seguro</string>

@@ -19,6 +19,10 @@
         Check your data or wifi connection. We\'ll retry in a few seconds!
     </string>
     <string name="picture_of_day_placeholder" translatable="false">Messier Craters in Stereo</string>
+    <string name="share_asteroid_text">
+        I have discovered the asteroid %s is passing near the Earth and you\'ll probably like to
+        check out too using the Near-Earth Asteroids app.
+    </string>
 
     <!-- Asteroid Detail screen -->
     <string name="asteroid_detail_image_content_description" translation_description="Content description for the header / hero image that is show at the top of the asteroid detail screen.">

@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="clickListener"
-            type="android.view.View.OnClickListener"
+            name="asteroidItemListener"
+            type="dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidItemListener"
             />
         <variable
             name="asteroid"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/small_spacing"
-            android:onClick="@{clickListener}"
+            android:onClick="@{() -> asteroidItemListener.onItemClicked(asteroid)}"
             app:strokeWidth="1dp"
             app:strokeColor="@color/stroke_color"
             app:cardElevation="0dp"
@@ -93,6 +93,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="@dimen/normal_spacing"
                     android:contentDescription="@{@string/share_asteroid_content_description(asteroid.name)}"
+                    android:onClick="@{() -> asteroidItemListener.onShareClicked(asteroid)}"
                     app:icon="@drawable/ic_share_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/asteroid_orbit_class_text"
@@ -107,6 +108,7 @@
                     android:minWidth="@dimen/min_size_control"
                     android:layout_marginEnd="@dimen/small_spacing"
                     android:contentDescription="@{@string/read_more_about_asteroid_content_description(asteroid.name)}"
+                    android:onClick="@{() -> asteroidItemListener.onMoreInfoClicked(asteroid)}"
                     app:icon="@drawable/ic_info_24"
                     app:layout_constraintEnd_toStartOf="@+id/share_button"
                     app:layout_constraintTop_toTopOf="@+id/share_button"

@@ -44,5 +44,7 @@ class RefreshAsteroidDataWork(
 
     companion object {
         const val REFRESH_ASTEROID_DATA_WORK = "RefreshAsteroidDataWork"
+        const val GET_INITIAL_ASTEROID_DATA_WORK = "OneTime-$REFRESH_ASTEROID_DATA_WORK"
+        const val RECURRING_REFRESH_ASTEROID_DATA_WORK = "Periodic-$REFRESH_ASTEROID_DATA_WORK"
     }
 }
