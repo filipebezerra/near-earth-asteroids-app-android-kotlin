@@ -8,8 +8,8 @@ import androidx.savedstate.SavedStateRegistryOwner
 import androidx.work.WorkManager
 import dev.filipebezerra.android.nearearthasteroids.repository.AsteroidRepository
 import dev.filipebezerra.android.nearearthasteroids.repository.PictureOfDayRepository
-import dev.filipebezerra.android.nearearthasteroids.ui.asteroiddetail.AsteroidDetailViewModel
-import dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidListViewModel
+import dev.filipebezerra.android.nearearthasteroids.asteroiddetail.AsteroidDetailViewModel
+import dev.filipebezerra.android.nearearthasteroids.asteroidlist.AsteroidListViewModel
 
 /**
  * Factory for all ViewModels.

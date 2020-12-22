@@ -1,4 +1,4 @@
-package dev.filipebezerra.android.nearearthasteroids.ui.asteroiddetail
+package dev.filipebezerra.android.nearearthasteroids.asteroiddetail
 
 import android.os.Bundle
 import android.view.LayoutInflater

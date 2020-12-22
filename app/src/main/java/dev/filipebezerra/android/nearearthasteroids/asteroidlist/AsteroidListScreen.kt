@@ -1,4 +1,4 @@
-package dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist
+package dev.filipebezerra.android.nearearthasteroids.asteroidlist
 
 import android.content.Intent
 import android.net.Uri
@@ -17,7 +17,7 @@ import dev.filipebezerra.android.nearearthasteroids.R
 import dev.filipebezerra.android.nearearthasteroids.databinding.AsteroidListScreenBinding
 import dev.filipebezerra.android.nearearthasteroids.domain.Asteroid
 import dev.filipebezerra.android.nearearthasteroids.util.ext.getViewModelFactory
-import dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidListScreenDirections.Companion.actionAsteroidListToAsteroidDetail as toAsteroidDetail
+import dev.filipebezerra.android.nearearthasteroids.asteroidlist.AsteroidListScreenDirections.Companion.actionAsteroidListToAsteroidDetail as toAsteroidDetail
 
 class AsteroidListScreen : Fragment() {
 
@@ -40,8 +40,8 @@ class AsteroidListScreen : Fragment() {
         }
         .root
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         createAndroidListAdapter()
         viewBinding.lifecycleOwner = viewLifecycleOwner
     }

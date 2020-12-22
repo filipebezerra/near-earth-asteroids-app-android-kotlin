@@ -1,4 +1,4 @@
-package dev.filipebezerra.android.nearearthasteroids.ui.asteroiddetail
+package dev.filipebezerra.android.nearearthasteroids.asteroiddetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

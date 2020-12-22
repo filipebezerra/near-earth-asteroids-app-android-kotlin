@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/asteroid_list"
-        android:name="dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidListScreen"
+        android:name="dev.filipebezerra.android.nearearthasteroids.asteroidlist.AsteroidListScreen"
         android:label="@string/asteroid_list"
         tools:layout="@layout/asteroid_list_screen"
         >
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/asteroid_detail"
-        android:name="dev.filipebezerra.android.nearearthasteroids.ui.asteroiddetail.AsteroidDetailScreen"
+        android:name="dev.filipebezerra.android.nearearthasteroids.asteroiddetail.AsteroidDetailScreen"
         tools:layout="@layout/asteroid_detail_screen"
         >
         <argument

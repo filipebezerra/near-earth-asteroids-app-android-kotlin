@@ -7,7 +7,7 @@
     <data>
         <variable
             name="asteroidItemListener"
-            type="dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidItemListener"
+            type="dev.filipebezerra.android.nearearthasteroids.asteroidlist.AsteroidItemListener"
             />
         <variable
             name="asteroid"

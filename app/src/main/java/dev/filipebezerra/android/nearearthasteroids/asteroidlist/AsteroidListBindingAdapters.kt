@@ -1,4 +1,4 @@
-package dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist
+package dev.filipebezerra.android.nearearthasteroids.asteroidlist
 
 import android.view.View
 import android.view.View.GONE

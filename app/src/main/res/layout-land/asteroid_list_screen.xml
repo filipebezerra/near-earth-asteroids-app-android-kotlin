@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.asteroidlist.AsteroidListScreen"
+    tools:context=".asteroidlist.AsteroidListScreen"
     >
 
     <data>
         <variable
             name="viewModel"
-            type="dev.filipebezerra.android.nearearthasteroids.ui.asteroidlist.AsteroidListViewModel"
+            type="dev.filipebezerra.android.nearearthasteroids.asteroidlist.AsteroidListViewModel"
             />
     </data>
 
