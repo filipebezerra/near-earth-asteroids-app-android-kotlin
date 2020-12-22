@@ -15,7 +15,10 @@
         <action
             android:id="@+id/action_asteroid_list_to_asteroid_detail"
             app:destination="@id/asteroid_detail"
-            app:popUpTo="@id/asteroid_list"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"
             />
     </fragment>
 
