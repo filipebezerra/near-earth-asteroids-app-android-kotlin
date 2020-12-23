@@ -16,9 +16,11 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import dev.filipebezerra.android.nearearthasteroids.R
+import dev.filipebezerra.android.nearearthasteroids.asteroiddetail.bindAsteroidHazardousOrSafe
 import dev.filipebezerra.android.nearearthasteroids.domain.Asteroid
 import dev.filipebezerra.android.nearearthasteroids.domain.PictureOfDay
 import dev.filipebezerra.android.nearearthasteroids.util.ext.applyImprovements
+import dev.filipebezerra.android.nearearthasteroids.util.getNeoSizeImage
 
 @BindingAdapter("asteroidList")
 fun bindAsteroidList(listView: RecyclerView, asteroids: List<Asteroid>?) =
@@ -93,4 +95,13 @@ fun View.bindInitialAsteroidDataState(initialAsteroidDataState: WorkInfo.State?)
                 R.id.asteroid_list_error -> visibility = GONE
             }
         }
+}
+
+@BindingAdapter("asteroidImageSize")
+fun ImageView.bindAsteroidImageSize(asteroid: Asteroid?) = asteroid?.let {
+    Glide.with(context)
+        .load(it.getNeoSizeImage(context))
+        .transition(DrawableTransitionOptions.withCrossFade())
+        .apply { applyImprovements() }
+        .into(this)
 }

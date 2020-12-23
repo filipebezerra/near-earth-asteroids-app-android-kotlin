@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     >
 
     <data>
@@ -63,10 +64,10 @@
                     android:layout_marginEnd="@dimen/normal_spacing"
                     android:contentDescription="@string/asteroid_image_content_description"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/arenas_08_morethan50ld"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic"
+                    bind:asteroidImageSize="@{asteroid}"
+                    tools:src="@drawable/arenas_08_morethan50ld"
                     />
 
                 <TextView

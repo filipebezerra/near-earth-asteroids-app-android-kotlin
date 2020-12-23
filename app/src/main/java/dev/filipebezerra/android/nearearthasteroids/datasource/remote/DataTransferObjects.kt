@@ -52,7 +52,8 @@ data class NeoRelativeVelocity(
 
 @JsonClass(generateAdapter = true)
 data class NeoMissDistance(
-    @Json(name = "kilometers") val kilometers: Double? = null
+    @Json(name = "kilometers") val kilometers: Double? = null,
+    @Json(name = "lunar") val lunar: Double? = null,
 )
 
 @JsonClass(generateAdapter = true)
@@ -81,7 +82,8 @@ fun NeoFeed.asDomainModel(): List<Asteroid> =
                 CloseApproachData(
                     approachDate = approachDate?.toLocalDate(),
                     relativeVelocityKilometersPerSecond = relativeVelocity?.kilometersPerSecond,
-                    missDistanceInKilometers = missDistance?.kilometers
+                    missDistanceInKilometers = missDistance?.kilometers,
+                    missDistanceLunar = missDistance?.lunar,
                 )
             },
             orbitClassDescription = it.orbitalData?.orbitClass?.description

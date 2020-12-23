@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f22e5bd58f05bdf5ab2ea8a190235821",
+    "identityHash": "098c42d8cb7a72fc4d8a229e6c80b385",
     "entities": [
       {
         "tableName": "asteroids",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `neo_id` TEXT, `name` TEXT, `nasa_jpl_url` TEXT, `absolute_magnitude` REAL, `is_potentially_hazardous` INTEGER, `orbit_class_description` TEXT, `estimated_diameter_min_in_meters` REAL, `estimated_diameter_max_in_meters` REAL, `close_approach_data_date` INTEGER, `close_approach_data_relative_velocity_kps` REAL, `close_approach_data_miss_distance_km` REAL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `neo_id` TEXT, `name` TEXT, `nasa_jpl_url` TEXT, `absolute_magnitude` REAL, `is_potentially_hazardous` INTEGER, `orbit_class_description` TEXT, `estimated_diameter_min_in_meters` REAL, `estimated_diameter_max_in_meters` REAL, `close_approach_data_date` INTEGER, `close_approach_data_relative_velocity_kps` REAL, `close_approach_data_miss_distance_km` REAL, `close_approach_data_miss_distance_lunar` REAL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -51,32 +51,38 @@
             "notNull": false
           },
           {
-            "fieldPath": "estimatedDiameterEntity.minimumInMeters",
+            "fieldPath": "estimatedDiameter.minimumInMeters",
             "columnName": "estimated_diameter_min_in_meters",
             "affinity": "REAL",
             "notNull": false
           },
           {
-            "fieldPath": "estimatedDiameterEntity.maximumInMeters",
+            "fieldPath": "estimatedDiameter.maximumInMeters",
             "columnName": "estimated_diameter_max_in_meters",
             "affinity": "REAL",
             "notNull": false
           },
           {
-            "fieldPath": "closeApproachDataEntity.approachDate",
+            "fieldPath": "closeApproachData.approachDate",
             "columnName": "close_approach_data_date",
             "affinity": "INTEGER",
             "notNull": false
           },
           {
-            "fieldPath": "closeApproachDataEntity.relativeVelocityKilometersPerSecond",
+            "fieldPath": "closeApproachData.relativeVelocityKilometersPerSecond",
             "columnName": "close_approach_data_relative_velocity_kps",
             "affinity": "REAL",
             "notNull": false
           },
           {
-            "fieldPath": "closeApproachDataEntity.missDistanceInKilometers",
+            "fieldPath": "closeApproachData.missDistanceInKilometers",
             "columnName": "close_approach_data_miss_distance_km",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "closeApproachData.missDistanceLunar",
+            "columnName": "close_approach_data_miss_distance_lunar",
             "affinity": "REAL",
             "notNull": false
           }
@@ -111,7 +117,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f22e5bd58f05bdf5ab2ea8a190235821')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '098c42d8cb7a72fc4d8a229e6c80b385')"
     ]
   }
 }

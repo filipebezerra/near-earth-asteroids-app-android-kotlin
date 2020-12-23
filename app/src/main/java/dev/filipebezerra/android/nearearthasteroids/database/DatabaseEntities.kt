@@ -29,6 +29,7 @@ data class CloseApproachDataEntity(
     @ColumnInfo(name = "date") val approachDate: LocalDate? = null,
     @ColumnInfo(name = "relative_velocity_kps") val relativeVelocityKilometersPerSecond: Double? = null,
     @ColumnInfo(name = "miss_distance_km") val missDistanceInKilometers: Double? = null,
+    @ColumnInfo(name = "miss_distance_lunar") val missDistanceLunar: Double? = null,
 )
 
 data class EstimatedDiameterEntity(
@@ -51,7 +52,8 @@ fun List<AsteroidEntity>.asDomainModel(): List<Asteroid> = map {
         closeApproachData = CloseApproachData(
             approachDate = it.closeApproachData?.approachDate,
             relativeVelocityKilometersPerSecond = it.closeApproachData?.relativeVelocityKilometersPerSecond,
-            missDistanceInKilometers = it.closeApproachData?.missDistanceInKilometers
+            missDistanceInKilometers = it.closeApproachData?.missDistanceInKilometers,
+            missDistanceLunar = it.closeApproachData?.missDistanceLunar,
         ),
         orbitClassDescription = it.orbitClassDescription
     )

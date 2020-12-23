@@ -25,6 +25,7 @@ data class CloseApproachData(
     val approachDate: LocalDate? = null,
     val relativeVelocityKilometersPerSecond: Double? = null,
     val missDistanceInKilometers: Double? = null,
+    val missDistanceLunar: Double? = null,
 ) : Parcelable
 
 @Parcelize
@@ -58,7 +59,8 @@ fun List<Asteroid>.asEntity(): List<AsteroidEntity> = map {
         closeApproachData = CloseApproachDataEntity(
             approachDate = it.closeApproachData?.approachDate,
             relativeVelocityKilometersPerSecond = it.closeApproachData?.relativeVelocityKilometersPerSecond,
-            missDistanceInKilometers = it.closeApproachData?.missDistanceInKilometers
+            missDistanceInKilometers = it.closeApproachData?.missDistanceInKilometers,
+            missDistanceLunar = it.closeApproachData?.missDistanceLunar,
         ),
         orbitClassDescription = it.orbitClassDescription
     )
