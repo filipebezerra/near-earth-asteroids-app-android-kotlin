@@ -103,11 +103,11 @@ Implement a History page with paging, filtering and grouping
 
 - [x] Socket time out error when first RefreshAsteroidDataWork is called
 - [x] Close approach date is presenting wrong relative date 
-- [ ] Close approach date is being calculated within one day ahead
-- [ ] Display units after the number, not to the left after the field description
+- [x] Close approach date is being calculated within one day ahead
+- [x] Display units after the number, not to the left after the field description
 - [ ] Display helpfull information about each field description
 - [ ] Improve numeric field formatting: follow AsteroidTracker app
-- [ ] Show shimmer first time loading asteroids (no cache yet)
+- [x] Show shimmer first time loading asteroids (no cache yet)
 - [ ] The application may be doing too much work on its main thread.
 
 ## Engineering Checklist
