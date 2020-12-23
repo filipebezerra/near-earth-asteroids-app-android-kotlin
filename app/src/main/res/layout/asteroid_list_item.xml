@@ -85,7 +85,7 @@
 
                 <Button
                     android:id="@+id/share_button"
-                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    style="@style/Widget.NearEarthAsteroids.Button.OutlinedButton.IconOnly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minHeight="@dimen/min_size_control"
@@ -94,14 +94,14 @@
                     android:layout_marginEnd="@dimen/normal_spacing"
                     android:contentDescription="@{@string/share_asteroid_content_description(asteroid.name)}"
                     android:onClick="@{() -> asteroidItemListener.onShareClicked(asteroid)}"
-                    app:icon="@drawable/ic_share_24"
+                    app:icon="@drawable/ic_twotone_share_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/asteroid_orbit_class_text"
                     />
 
                 <Button
                     android:id="@+id/more_info_button"
-                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    style="@style/Widget.NearEarthAsteroids.Button.OutlinedButton.IconOnly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minHeight="@dimen/min_size_control"
@@ -109,7 +109,7 @@
                     android:layout_marginEnd="@dimen/small_spacing"
                     android:contentDescription="@{@string/read_more_about_asteroid_content_description(asteroid.name)}"
                     android:onClick="@{() -> asteroidItemListener.onMoreInfoClicked(asteroid)}"
-                    app:icon="@drawable/ic_info_24"
+                    app:icon="@drawable/ic_twotone_info_24"
                     app:layout_constraintEnd_toStartOf="@+id/share_button"
                     app:layout_constraintTop_toTopOf="@+id/share_button"
                     />
