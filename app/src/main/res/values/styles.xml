@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <style name="ShapeAppearance.NearEarthAsteroids.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">16dp</item>
     </style>
 
-    <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Card</item>
-        <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
-    </style>
-
-    <style name="ThemeOverlay.App.Card" parent="">
-        <item name="colorPrimary">@color/purple_100</item>
-        <item name="colorSurface">@color/purple_light</item>
-        <item name="colorOnSurface">@color/purple_900</item>
-    </style>
-    
     <style name="TextAppearance.NearEarthAsteroids.Toolbar.Text" parent="@style/TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">?attr/colorSurface</item>
     </style>
@@ -33,6 +22,17 @@
         <item name="borderWidth">0dp</item>
         <item name="iconTint">@color/gray_700</item>
         <item name="android:background">?attr/actionBarItemBackground</item>
+    </style>
+
+    <style name="ThemeOverlay.NearEarthAsteroids.Card" parent="">
+        <item name="colorPrimary">@color/purple_100</item>
+        <item name="colorSurface">@color/purple_light</item>
+        <item name="colorOnSurface">@color/purple_900</item>
+    </style>
+
+    <style name="Widget.NearEarthAsteroids.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.NearEarthAsteroids.Card</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.NearEarthAsteroids.MediumComponent</item>
     </style>
 
     <style name="Widget.NearEarthAsteroids.AsteroidInfoTextView.Label" parent="Widget.MaterialComponents.TextView">
